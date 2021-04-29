@@ -74,7 +74,7 @@ namespace ProjektWinForm.Application
 
         private void manageFahrer_btn_Click(object sender, EventArgs e)
         {
-            MFF = new ManageFahrerForm();
+            MFF = new ManageFahrerForm(lk);
             MFF.setProperties(this);
             MFF.ShowDialog();
         }

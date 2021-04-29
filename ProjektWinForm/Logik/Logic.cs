@@ -220,9 +220,9 @@ namespace ProjektWinForm.Logik
             }
         }
 
-        public void UpdateAfterAddTeam()
+        public void UpdateAfterAdd(string Table)
         {
-            da = new OleDbDataAdapter("select * from Team", conn);
+            da = new OleDbDataAdapter($"select * from {Table}", conn);
             cb = new OleDbCommandBuilder(da);
             ds = new DataSet();
             bs = new BindingSource();

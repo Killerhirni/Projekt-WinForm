@@ -42,7 +42,7 @@ namespace ProjektWinForm.Manageteam
         private void runOut()
         {
             da.Update(ds);
-            lk.UpdateAfterAddTeam();
+            lk.UpdateAfterAdd("Team");
             loadCombo();
         }
 
@@ -59,7 +59,7 @@ namespace ProjektWinForm.Manageteam
             dr["Straße"] = _application.textBox4.Text;
             dr["Hausnummer"] = _application.textBox5.Text;
             dr["Ort"] = _application.textBox7.Text;
-            dr["PLZ"] = _application.textBox6.Text;
+            dr["PLZ"] = int.Parse(_application.textBox6.Text);
             ds.Tables[0].Rows.Add(dr);
         }
 

@@ -84,6 +84,9 @@
     <EmbeddedResource Include="Application\Application.resx">
       <DependentUpon>Application.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManageFahrer\ManageFahrerForm.resx">
+      <DependentUpon>ManageFahrerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManageTeam\ManageTeamsForm.resx">
       <DependentUpon>ManageTeamsForm.cs</DependentUpon>
     </EmbeddedResource>
