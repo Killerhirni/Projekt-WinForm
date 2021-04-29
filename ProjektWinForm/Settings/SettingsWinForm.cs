@@ -26,7 +26,6 @@
             {
                 settingsLogic.SafeFile();
             }
-
             // Form1_Load(null, EventArgs.Empty);
         }
 
@@ -39,11 +38,32 @@
         {
             pathTextSettings.Text = $"{Properties.Settings.Default.StartFile}";
             settingsLogic.SetProperties(sender);
+            if (Properties.Settings.Default.Mode != "regular")
+            {
+                advanced_rbn_settings.Select();
+            }
+            else
+            {
+                regular_rbn_mode.Select();
+            }
         }
 
         private void SearchFile_Click(object sender, EventArgs e)
         {
             settingsLogic.SearchFile();
+        }
+
+        private void saveStartMode_btn_Click(object sender, EventArgs e)
+        {
+            settingsLogic._form1Sender = _form1Application;
+            if (advanced_rbn_settings.Checked != true)
+            {
+                settingsLogic.setSettingsToRegular();
+            }
+            else
+            {
+                settingsLogic.setSettingsToAdvanced();
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using ProjektWinForm.Properties;
 using ProjektWinForm.Settings;
@@ -165,8 +166,6 @@ namespace ProjektWinForm.Logik
         {
             try
             {
-
-
                 var otherFile = string.Empty;
                 if (_application.openFileDialog1.ShowDialog() == DialogResult.OK)
                 {

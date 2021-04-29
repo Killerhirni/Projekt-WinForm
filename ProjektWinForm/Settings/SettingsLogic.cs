@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using ProjektWinForm.Logik;
 using static ProjektWinForm.Properties.Settings;
 
 namespace ProjektWinForm.Settings
@@ -8,6 +11,8 @@ namespace ProjektWinForm.Settings
     {
         private SettingsWinForm _application;
         public string startPath = Default.StartFile;
+        private Logic lk;
+        public Application.Application _form1Sender;
 
         public void SearchFile()
         {
@@ -33,6 +38,7 @@ namespace ProjektWinForm.Settings
         {
             _application = (SettingsWinForm)sender;
             _application.pathTextSettings.Text = Default.StartFile;
+            lk = new Logic();
         }
 
         public void SafeFile()
@@ -63,6 +69,23 @@ namespace ProjektWinForm.Settings
             {
                 MessageBox.Show($"There was a Problem \n {e.Message}", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        public void setSettingsToRegular()
+        {
+            Properties.Settings.Default.Mode = "regular";
+            _form1Sender.Size = new Size(190, 489);
+        }
+
+        public void setSettingsToAdvanced()
+        {
+            Properties.Settings.Default.Mode = "advanced";
+            _form1Sender.Size = new Size(1000,489);
+        }
+
+        public void setForm1(object sender)
+        {
+            _form1Sender = (Application.Application)sender;
         }
     }
 }

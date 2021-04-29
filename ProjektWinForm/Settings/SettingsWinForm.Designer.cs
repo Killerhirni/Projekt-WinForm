@@ -42,6 +42,7 @@
             this.advanced_rbn_settings = new System.Windows.Forms.RadioButton();
             this.regular_rbn_mode = new System.Windows.Forms.RadioButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -127,12 +128,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.saveStartMode_btn);
             this.groupBox1.Controls.Add(this.advanced_rbn_settings);
             this.groupBox1.Controls.Add(this.regular_rbn_mode);
             this.groupBox1.Location = new System.Drawing.Point(9, 103);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(178, 60);
+            this.groupBox1.Size = new System.Drawing.Size(178, 73);
             this.groupBox1.TabIndex = 18;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mode";
@@ -145,6 +147,7 @@
             this.saveStartMode_btn.TabIndex = 17;
             this.saveStartMode_btn.Text = "Save";
             this.saveStartMode_btn.UseVisualStyleBackColor = true;
+            this.saveStartMode_btn.Click += new System.EventHandler(this.saveStartMode_btn_Click);
             // 
             // advanced_rbn_settings
             // 
@@ -171,6 +174,15 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Standart Mode = Regular";
             // 
             // SettingsWinForm
             // 
@@ -208,5 +220,6 @@
         private System.Windows.Forms.RadioButton advanced_rbn_settings;
         private System.Windows.Forms.RadioButton regular_rbn_mode;
         public System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label1;
     }
 }

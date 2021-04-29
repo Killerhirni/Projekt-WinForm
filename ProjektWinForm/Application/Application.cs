@@ -13,12 +13,14 @@ namespace ProjektWinForm.Application
         private Logic lk;
         private SettingsLogic se;
         private ManageTeamsForm MTF;
+        private SettingsWinForm seWin;
 
         public Application()
         {
             InitializeComponent();
             lk = new Logic();
             se = new SettingsLogic();
+            seWin = new SettingsWinForm();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -26,6 +28,7 @@ namespace ProjektWinForm.Application
             if (sender != null)
             {
                 lk.SetProperties(sender);
+                se.setForm1(sender);
             }
 
             if (!Properties.Settings.Default.StartFile.Equals("none"))
@@ -63,22 +66,6 @@ namespace ProjektWinForm.Application
             lk.openTable();
         }
 
-        private void advanced_rbn_CheckedChanged_1(object sender, EventArgs e)
-        {
-            if (advanced_rbn.Checked == true)
-            {
-                this.Size = new Size(1000, 489);
-            }
-        }
-
-        private void regular_rbn_CheckedChanged_1(object sender, EventArgs e)
-        {
-            if (regular_rbn.Checked == true)
-            {
-                this.Size = new Size(190, 489);
-            }
-        }
-
         private void SearchFile_Click(object sender, EventArgs e)
         {
         }
@@ -96,7 +83,6 @@ namespace ProjektWinForm.Application
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SettingsWinForm seWin = new SettingsWinForm();
             seWin.setProperties(this);
             seWin.ShowDialog();
         }
