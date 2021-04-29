@@ -76,6 +76,7 @@ namespace ProjektWinForm.Manageteam
             {
                 button3.Visible = false;
                 button1.Text = "Delete";
+                MTFL.loadCombo();
             }
             else
             {
@@ -88,6 +89,19 @@ namespace ProjektWinForm.Manageteam
         private void button3_Click(object sender, EventArgs e)
         {
             MTFL.fillTextBoxes();
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox6.Text != string.Empty)
+            {
+                int i;
+                if (!int.TryParse(textBox6.Text, out i))
+                {
+                    MessageBox.Show("This is a number only field");
+                    textBox6.Clear();
+                }
+            }
         }
     }
 }

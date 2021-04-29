@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using static ProjektWinForm.Properties.Settings;
 
-namespace ProjektWinForm.Logik
+namespace ProjektWinForm.Settings
 {
     internal class SettingsLogic
     {

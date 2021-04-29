@@ -44,12 +44,12 @@ namespace ProjektWinForm.Manageteam
         {
             da.Update(ds);
             lk.UpdateAfterAddTeam();
-            _application.Close();
+            loadCombo();
         }
 
         private void messageBoxAdd()
         {
-            MessageBox.Show($"Das Team mit der TeamID: '{_application.textBox8.Text}' wurde Eingepflegt.");
+            MessageBox.Show($"Das Team wurde Eingepflegt.");
         }
 
         private void addNewTeam()
@@ -85,7 +85,7 @@ namespace ProjektWinForm.Manageteam
             fillDataSet();
             try
             {
-                if (_application.textBox8.Text != string.Empty)
+                if (_application.comboBox2.Text != string.Empty)
                 {
                     selectRowByInput();
                 }
@@ -103,7 +103,7 @@ namespace ProjektWinForm.Manageteam
 
         private void selectRowByInput()
         {
-            DataRow[] foundRows = ds.Tables[0].Select($"TeamID = {_application.textBox8.Text}");
+            DataRow[] foundRows = ds.Tables[0].Select($"TeamID = {_application.comboBox2.Text}");
             if (foundRows.Any())
             {
                 deleteRowWithFittingValue(foundRows);
@@ -120,7 +120,7 @@ namespace ProjektWinForm.Manageteam
             }
             else
             {
-                MessageBox.Show($"Die TeamID '{_application.textBox8.Text}' konnte nicht gefunden werden.",
+                MessageBox.Show($"Die TeamID '{_application.comboBox2.Text}' konnte nicht gefunden werden.",
                     "Error",
                     MessageBoxButtons.OK);
             }
@@ -128,13 +128,13 @@ namespace ProjektWinForm.Manageteam
 
         private void messageBoxDelete()
         {
-            MessageBox.Show($"Das Team mit der TeamID '{_application.textBox8.Text}' wurde gelöscht.");
+            MessageBox.Show($"Das Team mit der TeamID '{_application.comboBox2.Text}' wurde gelöscht.");
         }
 
         private DialogResult deleteDialogQuestin()
         {
             DialogResult dr = MessageBox.Show(
-                $"Wollen Sie das Team mit der TeamID '{_application.textBox8.Text}' unwiederuflich Löschen?",
+                $"Wollen Sie das Team mit der TeamID '{_application.comboBox2.Text}' unwiederuflich Löschen?",
                 "Question", MessageBoxButtons.YesNo);
             return dr;
         }
@@ -150,35 +150,47 @@ namespace ProjektWinForm.Manageteam
         public void loadCombo()
         {
             fillDataSet();
-            _application.comboBox1.Items.Clear();
+            if (_application.button3.Visible != true)
+            {
+                _application.comboBox2.Items.Clear();
+            }
+            else
+            {
+                _application.comboBox1.Items.Clear();
+            }
+
             foreach (DataRow dataRow in ds.Tables[0].Rows)
             {
-                _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                if (_application.button3.Visible != true)
+                {
+                    _application.comboBox2.Items.Add(dataRow.ItemArray[0]);
+                }
+                else
+                {
+                    _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                }
             }
         }
 
-        // public void filterForCombo()
-        // {
-        //     fillDataSet();
-        //     _application.comboBox1.Items.Remove();
-        //     DataRow[] foundRows = ds.Tables[0].Select($"TeamID = {_application.comboBox1.Text}");
-        //     foreach (var foundRow in foundRows)
-        //     {
-        //         _application.comboBox1.Items.Add(foundRow.ItemArray[0]);
-        //     }
-        // }
         public void fillTextBoxes()
         {
-            fillDataSet();
-            DataRow[] foundRows = ds.Tables[0].Select($"TeamID = {_application.comboBox1.Text}");
-            foreach (var foundRow in foundRows)
+            if (_application.comboBox1.Text != string.Empty)
             {
-                _application.textBox14.Text = foundRow.ItemArray[1].ToString();
-                _application.textBox13.Text = foundRow.ItemArray[2].ToString();
-                _application.textBox12.Text = foundRow.ItemArray[3].ToString();
-                _application.textBox11.Text = foundRow.ItemArray[4].ToString();
-                _application.textBox10.Text = foundRow.ItemArray[5].ToString();
-                _application.textBox9.Text = foundRow.ItemArray[6].ToString();
+                fillDataSet();
+                DataRow[] foundRows = ds.Tables[0].Select($"TeamID = {_application.comboBox1.Text}");
+                foreach (var foundRow in foundRows)
+                {
+                    _application.textBox14.Text = foundRow.ItemArray[1].ToString();
+                    _application.textBox13.Text = foundRow.ItemArray[2].ToString();
+                    _application.textBox12.Text = foundRow.ItemArray[3].ToString();
+                    _application.textBox11.Text = foundRow.ItemArray[4].ToString();
+                    _application.textBox10.Text = foundRow.ItemArray[5].ToString();
+                    _application.textBox9.Text = foundRow.ItemArray[6].ToString();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte wähen sie ein bereits existierendes Team aus.", "Fehler", MessageBoxButtons.OK);
             }
         }
 
@@ -188,17 +200,33 @@ namespace ProjektWinForm.Manageteam
             DataRow[] foundRows = ds.Tables[0].Select($"TeamID = {_application.comboBox1.Text}");
             foreach (var foundRow in foundRows)
             {
-                foundRow.ItemArray.SetValue(_application.textBox14.Text,1);
-                foundRow.ItemArray[2] = _application.textBox13.Text;
-                foundRow.ItemArray[3] = _application.textBox12.Text;
-                foundRow.ItemArray[4] = _application.textBox11.Text;
-                foundRow.ItemArray[5] = _application.textBox10.Text;
-                foundRow.ItemArray[6] = _application.textBox9.Text;
-                da.Update(ds.Tables[0]);
+                if (_application.textBox9.Text != string.Empty && _application.textBox10.Text != string.Empty &&
+                    _application.textBox11.Text != string.Empty && _application.textBox12.Text != string.Empty &&
+                    _application.textBox13.Text != string.Empty && _application.textBox14.Text != string.Empty)
+                {
+                    fillWithNewValue(foundRow);
+                    da.Update(ds.Tables[0]);
+                }
+                else
+                {
+                    MessageBox.Show("Sie haben ein Feld leer gelassen, es müssen ale felder gefüllt sein!.", "Error",
+                        MessageBoxButtons.OK);
+                }
             }
 
             messageBoxEdit();
             runOut();
+        }
+
+        private void fillWithNewValue(DataRow foundRow)
+        {
+            DataRow dr = foundRow;
+            dr["Teamname"] = _application.textBox14.Text;
+            dr["Mailadresse"] = _application.textBox13.Text;
+            dr["Straße"] = _application.textBox12.Text;
+            dr["Hausnummer"] = _application.textBox11.Text;
+            dr["Ort"] = _application.textBox9.Text;
+            dr["PLZ"] = _application.textBox10.Text;
         }
 
         private void messageBoxEdit()

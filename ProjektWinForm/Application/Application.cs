@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ProjektWinForm.Logik;
 using ProjektWinForm.Manageteam;
 using ProjektWinForm.Properties;
+using ProjektWinForm.Settings;
 
 namespace ProjektWinForm.Application
 {
@@ -29,7 +30,7 @@ namespace ProjektWinForm.Application
                 this.FormBorderStyle = FormBorderStyle.FixedDialog;
             }
 
-            if (!Settings.Default.StartFile.Equals("none"))
+            if (!Properties.Settings.Default.StartFile.Equals("none"))
             {
                 lk.Load();
             }
@@ -87,8 +88,6 @@ namespace ProjektWinForm.Application
 
         private void saveFileSettings_btn_Click(object sender, EventArgs e)
         {
-            se.SafeFile();
-            Form1_Load(null,EventArgs.Empty);
         }
 
         private void manageTeam_btn_Click(object sender, EventArgs e)
@@ -96,6 +95,13 @@ namespace ProjektWinForm.Application
             MTF = new ManageTeamsForm(lk);
             MTF.SetProperties(this);
             MTF.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SettingsWinForm seWin = new SettingsWinForm();
+            seWin.setProperties(this);
+            seWin.ShowDialog();
         }
     }
 }

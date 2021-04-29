@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Windows.Forms;
 using ProjektWinForm.Properties;
+using ProjektWinForm.Settings;
 
 namespace ProjektWinForm.Logik
 {
@@ -27,8 +28,8 @@ namespace ProjektWinForm.Logik
         {
             try
             {
-                startFile = Settings.Default.StartFile;
-                if (!Settings.Default.StartFile.Equals("none"))
+                startFile = Properties.Settings.Default.StartFile;
+                if (!Properties.Settings.Default.StartFile.Equals("none"))
                 {
                     SetPathTextBox();
                 }
