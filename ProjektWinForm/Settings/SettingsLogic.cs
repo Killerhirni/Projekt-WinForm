@@ -73,13 +73,15 @@ namespace ProjektWinForm.Settings
 
         public void setSettingsToRegular()
         {
-            Properties.Settings.Default.Mode = "regular";
+            Properties.Settings.Default.Mode = "Regular";
+            Properties.Settings.Default.Save();
             _form1Sender.Size = new Size(190, 489);
         }
 
         public void setSettingsToAdvanced()
         {
-            Properties.Settings.Default.Mode = "advanced";
+            Properties.Settings.Default.Mode = "Advanced";
+            Properties.Settings.Default.Save();
             _form1Sender.Size = new Size(1000,489);
         }
 

@@ -37,7 +37,7 @@ namespace ProjektWinForm.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("regular")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Regular")]
         public string Mode {
             get {
                 return ((string)(this["Mode"]));

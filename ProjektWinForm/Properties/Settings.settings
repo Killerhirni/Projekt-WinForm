@@ -6,7 +6,7 @@
       <Value Profile="(Default)">none</Value>
     </Setting>
     <Setting Name="Mode" Type="System.String" Scope="User">
-      <Value Profile="(Default)">regular</Value>
+      <Value Profile="(Default)">Regular</Value>
     </Setting>
   </Settings>
 </SettingsFile>

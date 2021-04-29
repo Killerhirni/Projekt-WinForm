@@ -171,20 +171,28 @@ namespace ProjektWinForm.Logik
                 {
                     otherFile = _application.openFileDialog1.FileName;
                 }
-                DialogResult dialogResult =
+                if (otherFile != _application.pathText.Text)
+                {
+                    DialogResult dialogResult =
                     MessageBox.Show(
                         "If you accept your current File will close. \nAre you Sure you want to Open another File?",
                         "Warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    if (otherFile != string.Empty)
+
+                    if (dialogResult == DialogResult.Yes)
                     {
-                        Load(otherFile);
+                        if (otherFile != string.Empty)
+                        {
+                            Load(otherFile);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("You denied.\nYour File is still Open.", "Information", MessageBoxButtons.OK);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("You denied.\nYour File is still Open.", "Information", MessageBoxButtons.OK);
+                    MessageBox.Show("Sie haben diese Datei bereits Ausgewählt.", "Information", MessageBoxButtons.OK);
                 }
             }
             catch (Exception e)

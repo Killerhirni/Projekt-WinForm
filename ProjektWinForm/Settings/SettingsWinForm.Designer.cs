@@ -78,12 +78,13 @@
             // 
             // cancelSettings_btn
             // 
-            this.cancelSettings_btn.Location = new System.Drawing.Point(677, 390);
+            this.cancelSettings_btn.Location = new System.Drawing.Point(673, 146);
             this.cancelSettings_btn.Name = "cancelSettings_btn";
             this.cancelSettings_btn.Size = new System.Drawing.Size(114, 41);
             this.cancelSettings_btn.TabIndex = 19;
             this.cancelSettings_btn.Text = "Cancel";
             this.cancelSettings_btn.UseVisualStyleBackColor = true;
+            this.cancelSettings_btn.Click += new System.EventHandler(this.cancelSettings_btn_Click);
             // 
             // groupBox2
             // 
@@ -188,11 +189,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(799, 197);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.cancelSettings_btn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "SettingsWinForm";
             this.Text = "SettingsWinForm";
             this.Load += new System.EventHandler(this.SettingsWinForm_Load);

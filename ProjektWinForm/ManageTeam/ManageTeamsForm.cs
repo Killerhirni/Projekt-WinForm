@@ -22,7 +22,7 @@ namespace ProjektWinForm.Manageteam
         private void ManageTeamsForm_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            MTFL.SetProperties(sender, _application);
+            MTFL.SetProperties(sender);
             MTFL.loadCombo();
         }
 

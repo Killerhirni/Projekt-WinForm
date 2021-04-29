@@ -54,6 +54,12 @@
       <DependentUpon>Application.cs</DependentUpon>
     </Compile>
     <Compile Include="Logik\Logic.cs" />
+    <Compile Include="ManageFahrer\ManageFahrerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageFahrer\ManageFahrerForm.Designer.cs">
+      <DependentUpon>ManageFahrerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManageTeam\ManageTeamsForm.cs">
       <SubType>Form</SubType>
     </Compile>

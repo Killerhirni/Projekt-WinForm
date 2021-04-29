@@ -38,7 +38,7 @@
         {
             pathTextSettings.Text = $"{Properties.Settings.Default.StartFile}";
             settingsLogic.SetProperties(sender);
-            if (Properties.Settings.Default.Mode != "regular")
+            if (Properties.Settings.Default.Mode != "Regular")
             {
                 advanced_rbn_settings.Select();
             }
@@ -63,6 +63,29 @@
             else
             {
                 settingsLogic.setSettingsToAdvanced();
+            }
+        }
+
+        private void cancelSettings_btn_Click(object sender, EventArgs e)
+        {
+            var test = "Regular";
+            if (advanced_rbn_settings.Checked == true)
+            {
+                test = "Advanced";}
+            if (Properties.Settings.Default.Mode != test ||
+                Properties.Settings.Default.StartFile != pathTextSettings.Text)
+            {
+                DialogResult re = MessageBox.Show(
+                    "Alle nicht gespeicherten Elemente werden Gelöscht.\nWollen Sie die Einstellungen verlassen?",
+                    "Question", MessageBoxButtons.YesNo);
+                if (re == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.Close();
             }
         }
     }

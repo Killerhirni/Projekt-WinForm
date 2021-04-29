@@ -15,7 +15,6 @@ namespace ProjektWinForm.Manageteam
         private DataRow dr;
         private DataSet ds;
         private Manageteam.ManageTeamsForm _application;
-        private Application.Application _form1Application;
         private Logic lk;
 
         public ManageTeamsFormLogic(Logic lkk)
@@ -74,10 +73,9 @@ namespace ProjektWinForm.Manageteam
             da.Fill(ds);
         }
 
-        public void SetProperties(object sender, Application.Application form1Application)
+        public void SetProperties(object sender)
         {
             _application = (ManageTeamsForm)sender;
-            form1Application = _form1Application;
         }
 
         public void deleteTeam()
