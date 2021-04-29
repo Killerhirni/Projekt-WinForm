@@ -41,6 +41,7 @@
             this.saveStartMode_btn = new System.Windows.Forms.Button();
             this.advanced_rbn_settings = new System.Windows.Forms.RadioButton();
             this.regular_rbn_mode = new System.Windows.Forms.RadioButton();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -122,6 +123,7 @@
             this.SearchFile.TabIndex = 2;
             this.SearchFile.Text = "Search";
             this.SearchFile.UseVisualStyleBackColor = true;
+            this.SearchFile.Click += new System.EventHandler(this.SearchFile_Click);
             // 
             // groupBox1
             // 
@@ -166,6 +168,10 @@
             this.regular_rbn_mode.Text = "Regular";
             this.regular_rbn_mode.UseVisualStyleBackColor = true;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // SettingsWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,6 +183,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "SettingsWinForm";
             this.Text = "SettingsWinForm";
+            this.Load += new System.EventHandler(this.SettingsWinForm_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -200,5 +207,6 @@
         private System.Windows.Forms.Button saveStartMode_btn;
         private System.Windows.Forms.RadioButton advanced_rbn_settings;
         private System.Windows.Forms.RadioButton regular_rbn_mode;
+        public System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

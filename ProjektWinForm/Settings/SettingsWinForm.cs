@@ -22,13 +22,28 @@
 
         private void saveFileSettings_btn_Click(object sender, EventArgs e)
         {
-            settingsLogic.SafeFile();
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+                settingsLogic.SafeFile();
+            }
+
             // Form1_Load(null, EventArgs.Empty);
         }
 
         public void setProperties(ProjektWinForm.Application.Application application)
         {
             _form1Application = application;
+        }
+
+        private void SettingsWinForm_Load(object sender, EventArgs e)
+        {
+            pathTextSettings.Text = $"{Properties.Settings.Default.StartFile}";
+            settingsLogic.SetProperties(sender);
+        }
+
+        private void SearchFile_Click(object sender, EventArgs e)
+        {
+            settingsLogic.SearchFile();
         }
     }
 }

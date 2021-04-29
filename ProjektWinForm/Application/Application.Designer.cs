@@ -579,10 +579,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.advancedManager_grpb);
             this.Controls.Add(this.TabControl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.HelpButton = true;
             this.Name = "Application";
-            this.Text = "Application | Beta Release 0.0.0.1";
+            this.Text = "App";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.advancedManager_grpb.ResumeLayout(false);
             this.advancedManager_grpb.PerformLayout();

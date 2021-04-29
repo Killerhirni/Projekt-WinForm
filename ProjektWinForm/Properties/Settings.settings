@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="StartFile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"none"</Value>
+      <Value Profile="(Default)">none</Value>
     </Setting>
   </Settings>
 </SettingsFile>

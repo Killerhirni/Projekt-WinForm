@@ -26,8 +26,6 @@ namespace ProjektWinForm.Application
             if (sender != null)
             {
                 lk.SetProperties(sender);
-                se.SetProperties(sender);
-                this.FormBorderStyle = FormBorderStyle.FixedDialog;
             }
 
             if (!Properties.Settings.Default.StartFile.Equals("none"))
@@ -83,7 +81,6 @@ namespace ProjektWinForm.Application
 
         private void SearchFile_Click(object sender, EventArgs e)
         {
-            se.SearchFile();
         }
 
         private void saveFileSettings_btn_Click(object sender, EventArgs e)

@@ -6,7 +6,7 @@ namespace ProjektWinForm.Settings
 {
     internal class SettingsLogic
     {
-        private Application.Application _application;
+        private SettingsWinForm _application;
         public string startPath = Default.StartFile;
 
         public void SearchFile()
@@ -31,7 +31,7 @@ namespace ProjektWinForm.Settings
 
         public void SetProperties(object sender)
         {
-            _application = (Application.Application)sender;
+            _application = (SettingsWinForm)sender;
             _application.pathTextSettings.Text = Default.StartFile;
         }
 
@@ -39,10 +39,24 @@ namespace ProjektWinForm.Settings
         {
             try
             {
-                if (Default.StartFile != startPath)
+
+                if (Properties.Settings.Default.StartFile != _application.pathTextSettings.Text)
                 {
-                    Default.StartFile = startPath;
-                    Default.Save();
+                    if (Default.StartFile != startPath)
+                    {
+                        Default.StartFile = startPath;
+                        Default.Save();
+                    }
+
+                    MessageBox.Show(
+                        $"Die Einstellung wurde Gespeichert.\nIhre startfile ist unter'{Default.StartFile}' zu finden.",
+                        "Information", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        $"Sie haben bereits die Datei unter '{Properties.Settings.Default.StartFile}' ausgewählt.",
+                        "Information", MessageBoxButtons.OK);
                 }
             }
             catch (Exception e)

@@ -84,7 +84,18 @@ namespace ProjektWinForm.Logik
 
         public void Connect()
         {
-            conn = new OleDbConnection($"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {startFile}");
+            if (startFile != "none")
+            {
+                conn = new OleDbConnection($"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {startFile}");
+            }
+            else
+            {
+                SettingsWinForm settingsWinForm = new SettingsWinForm();
+                settingsWinForm.ShowDialog();
+                MessageBox.Show(
+                    "Bitte wählen Sie eine Access Datei aus um wie Anwendung zu benutzen.\nKlicken sie Anschließend auf den Button 'Save' um Ihre Eingabe zu bestätigen.\nSie können die Startdatei jederzeit in den Einstellungen ändern.",
+                    "Information", MessageBoxButtons.OK);
+            }
         }
 
         public void OpenConn()

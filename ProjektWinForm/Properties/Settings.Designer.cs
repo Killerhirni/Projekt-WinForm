@@ -25,7 +25,7 @@ namespace ProjektWinForm.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\"none\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("none")]
         public string StartFile {
             get {
                 return ((string)(this["StartFile"]));
