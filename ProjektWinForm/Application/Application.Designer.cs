@@ -38,7 +38,6 @@
             this.showResults_btn = new System.Windows.Forms.Button();
             this.manageStrecke_btn = new System.Windows.Forms.Button();
             this.manageWettkampf_btn = new System.Windows.Forms.Button();
-            this.manageTeilnahme_btn = new System.Windows.Forms.Button();
             this.manageFahrer_btn = new System.Windows.Forms.Button();
             this.manageTeam_btn = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -90,7 +89,6 @@
             this.advancedManager_grpb.Controls.Add(this.showResults_btn);
             this.advancedManager_grpb.Controls.Add(this.manageStrecke_btn);
             this.advancedManager_grpb.Controls.Add(this.manageWettkampf_btn);
-            this.advancedManager_grpb.Controls.Add(this.manageTeilnahme_btn);
             this.advancedManager_grpb.Controls.Add(this.manageFahrer_btn);
             this.advancedManager_grpb.Controls.Add(this.manageTeam_btn);
             this.advancedManager_grpb.Location = new System.Drawing.Point(3, 12);
@@ -124,7 +122,7 @@
             // 
             // manageStrecke_btn
             // 
-            this.manageStrecke_btn.Location = new System.Drawing.Point(7, 232);
+            this.manageStrecke_btn.Location = new System.Drawing.Point(6, 181);
             this.manageStrecke_btn.Name = "manageStrecke_btn";
             this.manageStrecke_btn.Size = new System.Drawing.Size(149, 45);
             this.manageStrecke_btn.TabIndex = 4;
@@ -133,21 +131,12 @@
             // 
             // manageWettkampf_btn
             // 
-            this.manageWettkampf_btn.Location = new System.Drawing.Point(7, 181);
+            this.manageWettkampf_btn.Location = new System.Drawing.Point(7, 130);
             this.manageWettkampf_btn.Name = "manageWettkampf_btn";
             this.manageWettkampf_btn.Size = new System.Drawing.Size(149, 45);
             this.manageWettkampf_btn.TabIndex = 3;
             this.manageWettkampf_btn.Text = "Manage Wettkampf";
             this.manageWettkampf_btn.UseVisualStyleBackColor = true;
-            // 
-            // manageTeilnahme_btn
-            // 
-            this.manageTeilnahme_btn.Location = new System.Drawing.Point(7, 130);
-            this.manageTeilnahme_btn.Name = "manageTeilnahme_btn";
-            this.manageTeilnahme_btn.Size = new System.Drawing.Size(149, 45);
-            this.manageTeilnahme_btn.TabIndex = 2;
-            this.manageTeilnahme_btn.Text = "Manage Teilnahme";
-            this.manageTeilnahme_btn.UseVisualStyleBackColor = true;
             // 
             // manageFahrer_btn
             // 
@@ -410,7 +399,6 @@
         public System.Windows.Forms.GroupBox advancedManager_grpb;
         private System.Windows.Forms.Button manageStrecke_btn;
         private System.Windows.Forms.Button manageWettkampf_btn;
-        private System.Windows.Forms.Button manageTeilnahme_btn;
         private System.Windows.Forms.Button manageFahrer_btn;
         private System.Windows.Forms.Button manageTeam_btn;
         private System.Windows.Forms.Button showResults_btn;

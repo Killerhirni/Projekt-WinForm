@@ -56,7 +56,15 @@ namespace ProjektWinForm.ManageFahrer
                         }
                     }
                 }
-                else
+                else if(_application.tabControl1.SelectedIndex.Equals(0))
+                {
+                    _application.comboBox1.Items.Clear();
+                    foreach (DataRow dataRow in ds.Tables[0].Rows)
+                    {
+                        _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                    }
+                }
+                else if(_application.tabControl1.SelectedIndex.Equals(2))
                 {
                     _application.comboBox7.Items.Clear();
                     foreach (DataRow dataRow in ds.Tables[0].Rows)
@@ -114,6 +122,8 @@ namespace ProjektWinForm.ManageFahrer
             {
                 fillDataSet($"Fahrer{_application.comboBox4.Text}");
                 addNewFahrer();
+                UpdateTable();
+                setTeilnahme("Add");
                 messageBoxAdd();
                 runOut();
             }
@@ -121,6 +131,61 @@ namespace ProjektWinForm.ManageFahrer
             {
                 MessageBox.Show("You left a Field Empty!", "Information", MessageBoxButtons.OK);
             }
+        }
+
+        private void UpdateTable()
+        {
+            da.Update(ds);
+        }
+
+        private void setTeilnahme(string text)
+        {
+            if (text == "Add")
+            {
+                addTeilnahme($"FahrerAlter = {int.Parse(_application.textBox2.Text)} AND TeamID = {int.Parse(_application.comboBox1.Text)} AND PLZ = {int.Parse(_application.textBox5.Text)}");
+            }else if (text == "Delete")
+            {
+                deleteTeilnahme($"Startnummer = {int.Parse(_application.comboBox2.Text)}");
+            }
+            else if(text == "Edit")
+            {
+                
+            }
+
+        }
+
+        private void deleteTeilnahme(string selectString)
+        {
+            var Startnummer = 0;
+            fillDataSet($"Fahrer{_application.comboBox5.Text}");
+            returnStartnummer(Startnummer, selectString);
+            fillDataSet($"Teilnahme");
+            DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox2.Text}");
+            deleteRowWithFittingValue(foundRows);
+        }
+
+        private void addTeilnahme(string selectString)
+        {
+            var Startnummer = 0;
+            fillDataSet($"Fahrer{_application.comboBox4.Text}");
+            Startnummer = returnStartnummer(Startnummer, selectString);
+            fillDataSet($"Teilnahme"); 
+            DataRow dr = ds.Tables[0].NewRow();
+            dr["Startnummer"] = Startnummer;
+            dr["WettkampfID"] = int.Parse(_application.comboBox4.Text);
+            ds.Tables[0].Rows.Add(dr);
+        }
+
+        private int returnStartnummer(int Startnummer, string selectString)
+        {
+            DataRow[] drF = ds.Tables[0]
+                .Select(selectString);
+            foreach (var dataRow in drF)
+            {
+                Startnummer = (int) dataRow.ItemArray[0];
+            }
+
+            return Startnummer;
         }
 
         private void runOut()
@@ -163,11 +228,13 @@ namespace ProjektWinForm.ManageFahrer
         {
             if (_application.comboBox5.Text != string.Empty)
             {
-                fillDataSet($"Fahrer{_application.comboBox5.Text}");
                 try
                 {
                     if (_application.comboBox2.Text != string.Empty)
                     {
+                        setTeilnahme("Delete");
+                        UpdateTable();
+                        fillDataSet($"Fahrer{_application.comboBox5.Text}");
                         selectRowByInput();
                     }
                     else

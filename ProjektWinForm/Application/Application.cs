@@ -78,6 +78,11 @@ namespace ProjektWinForm.Application
             MFF.setProperties(this);
             MFF.ShowDialog();
         }
+
+        private void manageTeilnahme_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
