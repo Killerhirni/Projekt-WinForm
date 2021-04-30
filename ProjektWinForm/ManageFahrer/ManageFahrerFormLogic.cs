@@ -277,9 +277,9 @@ namespace ProjektWinForm.ManageFahrer
                 {
                     _application.textBox10.Text = foundRow.ItemArray[3].ToString();
                     _application.textBox11.Text = foundRow.ItemArray[4].ToString();
-                    _application.textBox10.Text = foundRow.ItemArray[2].ToString();
-                    _application.textBox10.Text = foundRow.ItemArray[1].ToString();
-                    _application.textBox10.Text = foundRow.ItemArray[5].ToString();
+                    _application.textBox12.Text = foundRow.ItemArray[2].ToString();
+                    _application.textBox13.Text = foundRow.ItemArray[1].ToString();
+                    _application.textBox14.Text = foundRow.ItemArray[5].ToString();
                 }
             }
             else

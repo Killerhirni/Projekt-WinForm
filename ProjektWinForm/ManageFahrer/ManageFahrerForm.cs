@@ -143,5 +143,11 @@ namespace ProjektWinForm.ManageFahrer
         {
             MFFL.autoSelectTeamID();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Manageteam.ManageTeamsForm addTeamForm = new ManageTeamsForm(lk = new Logic());
+            addTeamForm.ShowDialog();
+        }
     }
 }
