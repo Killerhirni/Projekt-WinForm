@@ -147,11 +147,6 @@ namespace ProjektWinForm.ManageFahrer
             {
                 deleteTeilnahme($"Startnummer = {int.Parse(_application.comboBox2.Text)}");
             }
-            else if(text == "Edit")
-            {
-                
-            }
-
         }
 
         private void deleteTeilnahme(string selectString)
