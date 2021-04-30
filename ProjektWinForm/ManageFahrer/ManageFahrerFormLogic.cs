@@ -1,9 +1,9 @@
-﻿using System;
+﻿using ProjektWinForm.Logik;
+using System;
 using System.Data;
 using System.Data.OleDb;
 using System.Linq;
 using System.Windows.Forms;
-using ProjektWinForm.Logik;
 
 namespace ProjektWinForm.ManageFahrer
 {
@@ -238,7 +238,53 @@ namespace ProjektWinForm.ManageFahrer
 
         public void saveEditedRow()
         {
+            if (_application.comboBox6.Text != string.Empty && _application.comboBox7.Text != string.Empty &&
+                _application.textBox10.Text != string.Empty &&
+                _application.textBox11.Text != string.Empty && _application.textBox12.Text != string.Empty &&
+                _application.textBox13.Text != string.Empty && _application.textBox14.Text != string.Empty)
+            {
+                fillDataSet($"Fahrer{_application.comboBox6.Text}");
+                DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
+                foreach (var foundRow in foundRows)
+                {
+                    if (_application.comboBox6.Text != string.Empty && _application.comboBox7.Text != string.Empty &&
+                        _application.textBox10.Text != string.Empty &&
+                        _application.textBox11.Text != string.Empty && _application.textBox12.Text != string.Empty &&
+                        _application.textBox13.Text != string.Empty && _application.textBox14.Text != string.Empty)
+                    {
+                        fillWithNewValue(foundRow);
+                        da.Update(ds.Tables[0]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sie haben ein Feld leer gelassen, es müssen ale felder gefüllt sein!.",
+                            "Error",
+                            MessageBoxButtons.OK);
+                    }
+                    messageBoxEdit();
+                    runOut();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Es müssen alle Felder befüllt sein!", "Error", MessageBoxButtons.OK);
+            }
+        }
 
+        private void messageBoxEdit()
+        {
+            MessageBox.Show($"Der Fahrer mit der Startnummer:{_application.comboBox3.Text} wurde erfolgreich Bearbeitet.",
+                "Information", MessageBoxButtons.OK);
+        }
+
+        private void fillWithNewValue(DataRow foundRow)
+        {
+            DataRow dr = foundRow;
+            dr["Straße"] = _application.textBox13.Text;
+            dr["Hausnummer"] = _application.textBox12.Text;
+            dr["Ort"] = _application.textBox10.Text;
+            dr["PLZ"] = _application.textBox11.Text;
+            dr["FahrerAlter"] = _application.textBox14.Text;
         }
 
         public string setBez()
@@ -271,20 +317,35 @@ namespace ProjektWinForm.ManageFahrer
         {
             if (_application.comboBox6.Text != string.Empty)
             {
-                fillDataSet($"Fahrer{_application.comboBox6.Text}");
-                DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
-                foreach (var foundRow in foundRows)
+                if (_application.comboBox3.Text != string.Empty)
                 {
-                    _application.textBox10.Text = foundRow.ItemArray[3].ToString();
-                    _application.textBox11.Text = foundRow.ItemArray[4].ToString();
-                    _application.textBox12.Text = foundRow.ItemArray[2].ToString();
-                    _application.textBox13.Text = foundRow.ItemArray[1].ToString();
-                    _application.textBox14.Text = foundRow.ItemArray[5].ToString();
+                    if (_application.comboBox7.Text != string.Empty)
+                    {
+                        fillDataSet($"Fahrer{_application.comboBox6.Text}");
+                        DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
+                        foreach (var foundRow in foundRows)
+                        {
+                            _application.textBox10.Text = foundRow.ItemArray[3].ToString();
+                            _application.textBox11.Text = foundRow.ItemArray[4].ToString();
+                            _application.textBox12.Text = foundRow.ItemArray[2].ToString();
+                            _application.textBox13.Text = foundRow.ItemArray[1].ToString();
+                            _application.textBox14.Text = foundRow.ItemArray[5].ToString();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Die TeamID ist nicht gefüllt.\nBitte wenden Sie sich an den Administrator",
+                            "Error", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bitte wählen sie eine Startnummer aus.", "Fehler", MessageBoxButtons.OK);
                 }
             }
             else
             {
-                MessageBox.Show("Bitte wählen sie einen Wettkamf aus.", "Fehler", MessageBoxButtons.OK);
+                MessageBox.Show("Bitte wählen sie einen Wettkampf aus.", "Fehler", MessageBoxButtons.OK);
             }
         }
 
@@ -307,7 +368,7 @@ namespace ProjektWinForm.ManageFahrer
                             "Fehler", MessageBoxButtons.OK);
                     }
                 }
-                
+
             }
             else
             {

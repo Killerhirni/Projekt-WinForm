@@ -29,6 +29,7 @@ namespace ProjektWinForm.ManageFahrer
             MFFL.setProperties(this);
             MFFL.loadCombo("Team");
             MFFL.loadCombo("Wettkampf");
+            button3.Visible = false;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
