@@ -61,6 +61,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_show = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.advancedManager_grpb.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -85,6 +86,7 @@
             // 
             // advancedManager_grpb
             // 
+            this.advancedManager_grpb.Controls.Add(this.button2);
             this.advancedManager_grpb.Controls.Add(this.button1);
             this.advancedManager_grpb.Controls.Add(this.showResults_btn);
             this.advancedManager_grpb.Controls.Add(this.manageStrecke_btn);
@@ -137,6 +139,7 @@
             this.manageWettkampf_btn.TabIndex = 3;
             this.manageWettkampf_btn.Text = "Manage Wettkampf";
             this.manageWettkampf_btn.UseVisualStyleBackColor = true;
+            this.manageWettkampf_btn.Click += new System.EventHandler(this.manageWettkampf_btn_Click);
             // 
             // manageFahrer_btn
             // 
@@ -368,6 +371,15 @@
             this.btn_show.UseVisualStyleBackColor = true;
             this.btn_show.Click += new System.EventHandler(this.btn_show_Click_1);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 232);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(149, 45);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Manage Streckenzeit";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -425,6 +437,7 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btn_show;
+        private System.Windows.Forms.Button button2;
     }
 }
 

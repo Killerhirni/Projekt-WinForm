@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using ProjektWinForm.Logik;
 using ProjektWinForm.ManageFahrer;
 using ProjektWinForm.Manageteam;
+using ProjektWinForm.ManageWettkampf;
 using ProjektWinForm.Properties;
 using ProjektWinForm.Settings;
 
@@ -16,6 +17,7 @@ namespace ProjektWinForm.Application
         private ManageTeamsForm MTF;
         private SettingsWinForm seWin;
         private ManageFahrerForm MFF;
+        private ManageWettkampfForm MWF;
 
         public Application()
         {
@@ -79,9 +81,11 @@ namespace ProjektWinForm.Application
             MFF.ShowDialog();
         }
 
-        private void manageTeilnahme_btn_Click(object sender, EventArgs e)
+        private void manageWettkampf_btn_Click(object sender, EventArgs e)
         {
-
+            MWF = new ManageWettkampfForm();
+            MWF.setProperties(this);
+            MWF.ShowDialog();
         }
     }
 }
