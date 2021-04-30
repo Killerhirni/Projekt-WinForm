@@ -60,6 +60,7 @@
     <Compile Include="ManageFahrer\ManageFahrerForm.Designer.cs">
       <DependentUpon>ManageFahrerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManageFahrer\ManageFahrerFormLogic.cs" />
     <Compile Include="ManageTeam\ManageTeamsForm.cs">
       <SubType>Form</SubType>
     </Compile>
