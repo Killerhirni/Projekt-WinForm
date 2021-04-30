@@ -66,10 +66,13 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.WhiteSmoke;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(70, 78);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(204, 20);
             this.dateTimePicker1.TabIndex = 0;
+            this.dateTimePicker1.UseWaitCursor = true;
+            this.dateTimePicker1.Value = new System.DateTime(2021, 4, 30, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // tabControl1
@@ -322,6 +325,7 @@
             this.button2.TabIndex = 20;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -331,6 +335,7 @@
             this.button1.TabIndex = 19;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
@@ -340,6 +345,7 @@
             this.button3.TabIndex = 18;
             this.button3.Text = "Select";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // ManageWettkampfForm
             // 
@@ -366,7 +372,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        public System.Windows.Forms.DateTimePicker dateTimePicker1;
         public System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label5;
@@ -390,8 +396,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox textBox3;
         public System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        public System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }

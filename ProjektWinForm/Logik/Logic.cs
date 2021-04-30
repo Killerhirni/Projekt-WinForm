@@ -230,6 +230,10 @@ namespace ProjektWinForm.Logik
             bs.DataSource = ds.Tables[0];
             _application.dataGridView1.DataSource = ds.Tables[0];
             _application.bindingNavigator1.BindingSource = bs;
+            Connect();
+            OpenConn();
+            GetTables();
+            CloseConn();
         }
     }
 }

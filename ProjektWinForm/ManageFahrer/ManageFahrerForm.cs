@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using ProjektWinForm.Logik;
 using ProjektWinForm.Manageteam;
+using ProjektWinForm.ManageWettkampf;
 
 namespace ProjektWinForm.ManageFahrer
 {
@@ -149,6 +150,12 @@ namespace ProjektWinForm.ManageFahrer
         {
             Manageteam.ManageTeamsForm addTeamForm = new ManageTeamsForm(lk = new Logic());
             addTeamForm.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ManageWettkampfForm MWF = new ManageWettkampfForm(lk);
+            MWF.ShowDialog();
         }
     }
 }

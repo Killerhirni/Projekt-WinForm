@@ -58,6 +58,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
@@ -78,7 +79,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -146,6 +146,7 @@
             this.button4.Size = new System.Drawing.Size(24, 23);
             this.button4.TabIndex = 17;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox7
             // 
@@ -388,6 +389,17 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Edit Fahrer";
             // 
+            // button6
+            // 
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button6.Location = new System.Drawing.Point(217, 57);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(24, 23);
+            this.button6.TabIndex = 32;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(90, 178);
@@ -565,17 +577,6 @@
             this.button3.Text = "Select";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button6
-            // 
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button6.Location = new System.Drawing.Point(217, 57);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(24, 23);
-            this.button6.TabIndex = 32;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // ManageFahrerForm
             // 

@@ -83,7 +83,7 @@ namespace ProjektWinForm.Application
 
         private void manageWettkampf_btn_Click(object sender, EventArgs e)
         {
-            MWF = new ManageWettkampfForm();
+            MWF = new ManageWettkampfForm(lk);
             MWF.setProperties(this);
             MWF.ShowDialog();
         }
