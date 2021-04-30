@@ -137,6 +137,7 @@
             this.button4.Size = new System.Drawing.Size(24, 23);
             this.button4.TabIndex = 19;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label4
             // 
@@ -356,6 +357,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ManageWettkampfForm";
             this.Text = "ManageWettkampfForm";
             this.Load += new System.EventHandler(this.ManageWettkampfForm_Load);

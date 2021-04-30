@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using ProjektWinForm.Abfrage;
 using ProjektWinForm.Logik;
 using ProjektWinForm.ManageFahrer;
 using ProjektWinForm.Manageteam;
 using ProjektWinForm.ManageWettkampf;
 using ProjektWinForm.Properties;
 using ProjektWinForm.Settings;
+using ProjektWinForm.ShowResults;
 
 namespace ProjektWinForm.Application
 {
@@ -18,6 +20,9 @@ namespace ProjektWinForm.Application
         private SettingsWinForm seWin;
         private ManageFahrerForm MFF;
         private ManageWettkampfForm MWF;
+        private AskForWettkampf AFW;
+        public int WettkampfID;
+        private Abfrage.AbfrageWinForm ABF;
 
         public Application()
         {
@@ -86,6 +91,21 @@ namespace ProjektWinForm.Application
             MWF = new ManageWettkampfForm(lk);
             MWF.setProperties(this);
             MWF.ShowDialog();
+        }
+
+        private void manageStrecke_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showResults_btn_Click(object sender, EventArgs e)
+        {
+            AFW = new AskForWettkampf();
+            AFW.setProperties(this);
+            AFW.ShowDialog();
+            ABF = new AbfrageWinForm();
+            ABF.setProperties(this);
+            ABF.ShowDialog();
         }
     }
 }

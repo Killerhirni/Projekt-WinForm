@@ -121,6 +121,7 @@
             this.showResults_btn.TabIndex = 5;
             this.showResults_btn.Text = "Show Results";
             this.showResults_btn.UseVisualStyleBackColor = true;
+            this.showResults_btn.Click += new System.EventHandler(this.showResults_btn_Click);
             // 
             // manageStrecke_btn
             // 
@@ -130,6 +131,7 @@
             this.manageStrecke_btn.TabIndex = 4;
             this.manageStrecke_btn.Text = "Manage Strecke";
             this.manageStrecke_btn.UseVisualStyleBackColor = true;
+            this.manageStrecke_btn.Click += new System.EventHandler(this.manageStrecke_btn_Click);
             // 
             // manageWettkampf_btn
             // 
