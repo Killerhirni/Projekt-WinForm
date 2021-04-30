@@ -195,7 +195,7 @@ namespace ProjektWinForm.ManageWettkampf
             }
             else
             {
-                MessageBox.Show($"Die TeamID '{_application.comboBox2.Text}' konnte nicht gefunden werden.",
+                MessageBox.Show($"Der Wettkampf mit der WettkampfID '{_application.comboBox1.Text}' konnte nicht gefunden werden.",
                     "Error",
                     MessageBoxButtons.OK);
             }
@@ -245,7 +245,7 @@ namespace ProjektWinForm.ManageWettkampf
             }
             else
             {
-                MessageBox.Show("Bitte wählen sie einen Wettkampf aus.", "Fehler", MessageBoxButtons.OK);
+                MessageBox.Show("Bitte wählen Sie einen Wettkampf aus.", "Fehler", MessageBoxButtons.OK);
             }
 
         }

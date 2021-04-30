@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ProjektWinForm.Abfrage;
 using ProjektWinForm.Logik;
+using ProjektWinForm.Manage_Strecke;
 using ProjektWinForm.ManageFahrer;
 using ProjektWinForm.Manageteam;
 using ProjektWinForm.ManageWettkampf;
@@ -23,6 +24,7 @@ namespace ProjektWinForm.Application
         private AskForWettkampf AFW;
         public int WettkampfID;
         private Abfrage.AbfrageWinForm ABF;
+        private ManageStreckeWinForm MSW;
 
         public Application()
         {
@@ -95,7 +97,9 @@ namespace ProjektWinForm.Application
 
         private void manageStrecke_btn_Click(object sender, EventArgs e)
         {
-
+            MSW = new ManageStreckeWinForm(lk);
+            MSW.setProperties(this);
+            MSW.ShowDialog();
         }
 
         private void showResults_btn_Click(object sender, EventArgs e)

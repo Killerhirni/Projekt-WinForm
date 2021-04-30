@@ -33,7 +33,7 @@ namespace ProjektWinForm.Abfrage
         {
             ABWFL.setProperties(this,_form1Application);
             ABWFL.loadConn("Wettkampf");
-            ABWFL.SQLSHOW();
+            // ABWFL.SQLSHOW();
         }
     }
 
