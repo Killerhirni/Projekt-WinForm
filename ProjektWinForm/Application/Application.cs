@@ -10,6 +10,7 @@ using ProjektWinForm.ManageWettkampf;
 using ProjektWinForm.Properties;
 using ProjektWinForm.Settings;
 using ProjektWinForm.ShowResults;
+using ProjektWinForm.StreckenZeit;
 
 namespace ProjektWinForm.Application
 {
@@ -25,6 +26,7 @@ namespace ProjektWinForm.Application
         public int WettkampfID;
         private Abfrage.AbfrageWinForm ABF;
         private ManageStreckeWinForm MSW;
+        private ManageStreckenZeitWinForm MSTZW;
 
         public Application()
         {
@@ -110,6 +112,13 @@ namespace ProjektWinForm.Application
             ABF = new AbfrageWinForm();
             ABF.setProperties(this);
             ABF.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MSTZW = new ManageStreckenZeitWinForm(lk);
+            MSTZW.setProperties(this);
+            MSTZW.ShowDialog();
         }
     }
 }

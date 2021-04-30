@@ -107,6 +107,12 @@
     <Compile Include="ShowResults\AskForWettkampf.Designer.cs">
       <DependentUpon>AskForWettkampf.cs</DependentUpon>
     </Compile>
+    <Compile Include="StreckenZeit\ManageStreckenZeitWinForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StreckenZeit\ManageStreckenZeitWinForm.Designer.cs">
+      <DependentUpon>ManageStreckenZeitWinForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Abfrage\AbfrageWinForm.resx">
       <DependentUpon>AbfrageWinForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ShowResults\AskForWettkampf.resx">
       <DependentUpon>AskForWettkampf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StreckenZeit\ManageStreckenZeitWinForm.resx">
+      <DependentUpon>ManageStreckenZeitWinForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -34,6 +34,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label2 = new System.Windows.Forms.Label();
             this.advancedManager_grpb = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.showResults_btn = new System.Windows.Forms.Button();
             this.manageStrecke_btn = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_show = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.advancedManager_grpb.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -99,6 +99,16 @@
             this.advancedManager_grpb.TabIndex = 13;
             this.advancedManager_grpb.TabStop = false;
             this.advancedManager_grpb.Text = "Manager";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(6, 232);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(149, 45);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "Manage Streckenzeit";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -372,15 +382,6 @@
             this.btn_show.Text = "Show Table";
             this.btn_show.UseVisualStyleBackColor = true;
             this.btn_show.Click += new System.EventHandler(this.btn_show_Click_1);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(6, 232);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(149, 45);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Manage Streckenzeit";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // Application
             // 
