@@ -90,6 +90,11 @@ namespace ProjektWinForm.ManageFahrer
             else
             {
                 MFFL.saveEditedRow();
+                textBox14.Clear();
+                textBox10.Clear();
+                textBox11.Clear();
+                textBox12.Clear();
+                textBox13.Clear();
             }
         }
 
@@ -178,7 +183,7 @@ namespace ProjektWinForm.ManageFahrer
             if (textBox14.Text != string.Empty)
             {
                 int i;
-                if (!int.TryParse(textBox6.Text, out i))
+                if (!int.TryParse(textBox14.Text, out i))
                 {
                     MessageBox.Show("This is a number only field");
                     textBox14.Clear();
@@ -191,7 +196,7 @@ namespace ProjektWinForm.ManageFahrer
             if (textBox11.Text != string.Empty)
             {
                 int i;
-                if (!int.TryParse(textBox6.Text, out i))
+                if (!int.TryParse(textBox11.Text, out i))
                 {
                     MessageBox.Show("This is a number only field");
                     textBox11.Clear();

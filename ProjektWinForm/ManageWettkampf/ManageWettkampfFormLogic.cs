@@ -307,7 +307,7 @@ namespace ProjektWinForm.ManageWettkampf
         private void fillWithNewValue(DataRow foundRow)
         {
             DataRow dr = foundRow;
-            dr["DatumWettkampf"] = _application.dateTimePicker2.Text;
+            dr["WettkampfDatum"] = _application.dateTimePicker2.Text;
             dr["Bezeichnung"] = _application.textBox3.Text;
             dr["StreckeID"] = _application.comboBox3.Text;
         }

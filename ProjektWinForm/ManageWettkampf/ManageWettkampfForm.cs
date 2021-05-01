@@ -125,6 +125,7 @@ namespace ProjektWinForm.ManageWettkampf
             else if (tabControl1.SelectedIndex.Equals(2))
             {
                 MWFL.saveEdit();
+                textBox1.Clear();
             }
         }
 

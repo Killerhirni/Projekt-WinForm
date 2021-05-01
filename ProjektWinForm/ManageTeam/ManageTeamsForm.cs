@@ -109,13 +109,13 @@ namespace ProjektWinForm.Manageteam
 
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
-            if (textBox6.Text != string.Empty)
+            if (textBox10.Text != string.Empty)
             {
                 int i;
-                if (!int.TryParse(textBox6.Text, out i))
+                if (!int.TryParse(textBox10.Text, out i))
                 {
                     MessageBox.Show("This is a number only field");
-                    textBox6.Clear();
+                    textBox10.Clear();
                 }
             }
         }
