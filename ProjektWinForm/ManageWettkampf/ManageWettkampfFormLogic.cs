@@ -15,6 +15,7 @@ namespace ProjektWinForm.ManageWettkampf
         private OleDbCommandBuilder cmd;
         private DataSet ds;
         private Logic lk;
+        private OleDbCommand cmdd;
 
         public ManageWettkampfFormLogic(Logic lkk)
         {
@@ -223,9 +224,11 @@ namespace ProjektWinForm.ManageWettkampf
 
         private void deleteRowWithFittingValue(DataRow[] foundRows)
         {
-            foreach (var dataRow in foundRows)
+            Console.WriteLine(foundRows);
+            foreach (DataRow dataRow in foundRows)
             {
                 dataRow.Delete();
+                Console.WriteLine(dataRow);
             }
         }
 
