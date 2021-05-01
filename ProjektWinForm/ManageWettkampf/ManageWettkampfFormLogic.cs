@@ -200,13 +200,13 @@ namespace ProjektWinForm.ManageWettkampf
             DataRow[] foundRows = ds.Tables[0].Select($"WettkampfID = {_application.comboBox1.Text}");
             if (foundRows.Any())
             {
-                deleteRowWithFittingValue(foundRows);
                 var dr = deleteDialogQuestin();
                 if (dr == DialogResult.Yes)
                 {
+                    deleteRowWithFittingValue(foundRows);
+                    runOut();
                     loadCombo("Wettkampf");
                     messageBoxDelete();
-                    runOut();
                 }
                 else
                 {
@@ -230,6 +230,7 @@ namespace ProjektWinForm.ManageWettkampf
                 dataRow.Delete();
                 Console.WriteLine(dataRow);
             }
+            // foundRows.AcceptChanges();
         }
 
         private void messageBoxDelete()
