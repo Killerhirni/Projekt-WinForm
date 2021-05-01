@@ -1,4 +1,5 @@
 ﻿using ProjektWinForm.Logik;
+using ProjektWinForm.Manage_Strecke;
 
 namespace ProjektWinForm.ManageWettkampf
 {
@@ -10,6 +11,7 @@ namespace ProjektWinForm.ManageWettkampf
         private ProjektWinForm.Application.Application _form1Application;
         private ManageWettkampfFormLogic MWFL;
         private Logic lkk;
+        private ManageStreckeWinForm MSWF;
         public ManageWettkampfForm(Logic lk)
         {
             InitializeComponent();
@@ -24,25 +26,30 @@ namespace ProjektWinForm.ManageWettkampf
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+           var a = MWFL.setBez();
+           textBox4.Text = a;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex.Equals(0))
             {
+                textBox5.Text = "Bezeichnung des Wettkampfes";
+                textBox4.Text = "Bezeichnung des Wettkampfes";
                 button3.Visible = false;
                 button1.Text = "Add";
                 MWFL.loadCombo("Strecke");
             }
             else if (tabControl1.SelectedIndex.Equals(1))
             {
+                textBox4.Text = "Bezeichnung des Wettkampfes";
                 button1.Text = "Delete";
                 button3.Visible = false;
                 MWFL.loadCombo("Wettkampf");
             }
             else if (tabControl1.SelectedIndex.Equals(2))
             {
+                textBox5.Text = "Bezeichnung des Wettkampfes";
                 button1.Text = "Save";
                 button3.Visible = true;
                 MWFL.loadCombo("Wettkampf");
@@ -132,7 +139,20 @@ namespace ProjektWinForm.ManageWettkampf
 
         private void button4_Click(object sender, EventArgs e)
         {
+            MSWF = new ManageStreckeWinForm(lkk);
+            MSWF.ShowDialog();
+        }
 
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var a = MWFL.setBez();
+            textBox5.Text = a;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MSWF = new ManageStreckeWinForm(lkk);
+            MSWF.ShowDialog();
         }
     }
 }

@@ -93,12 +93,15 @@ namespace ProjektWinForm.ManageWettkampf
             if (_application.comboBox2.Text != string.Empty && _application.dateTimePicker1.Text != string.Empty && _application.textBox1.Text != string.Empty)
             {
                 fillDataSet("Wettkampf");
-                addNewWettkampf();
-                UpdateTable();
-                // int newWettkampf = getNewId();
-                // addnewFahrerTable(newWettkampf);
-                messageBoxAdd();
-                runOut();
+                var dre = addNewWettkampf();
+                if (!dre.Length.Equals(0))
+                {
+                    UpdateTable();
+                    int newWettkampf = getNewId();
+                    addnewFahrerTable(newWettkampf);
+                    messageBoxAdd();
+                    runOut();
+                }
             }
             else
             {
@@ -106,30 +109,33 @@ namespace ProjektWinForm.ManageWettkampf
             }
         }
 
-        /*private int getNewId()
+        private int getNewId()
         {
-            // var ID = 0;
-            // string s1 = $"DatumWettkampf = {_application.dateTimePicker1.CustomFormat = "dd/MM/yyyy"}{_application.dateTimePicker1.Value} AND";
-            // string s2 = s1 + $" StreckeID = {_application.comboBox2.Text} AND";
-            // string s3 = s2 + $" Bezeichnung = '{_application.textBox1.Text}'";
-            // DataRow[] dr = ds.Tables[0].Select($"{s3}");
-            // foreach (DataRow foundRow in dr)
-            // {
-            //     ID = (int)foundRow.ItemArray[0];
-            // }
-            //
-            return null;
-        }*/
+            fillDataSet("Wettkampf");
+            var ID = 0;
+            string s2 = $" StreckeID = {_application.comboBox2.Text} AND";
+            string s3 = s2 + $" Bezeichnung = '{_application.textBox1.Text}'";
+            DataRow[] dr = ds.Tables[0].Select($"{s3}");
+            if (dr.Length == 1)
+            {
+                foreach (DataRow foundRow in dr)
+                {
+                    ID = (int) foundRow.ItemArray[0];
+                }
+            }
+
+            return ID;
+        }
 
         private void UpdateTable()
         {
             da.Update(ds);
         }
 
-        // private void addnewFahrerTable(int newWettkampf)
-        // {
-        //     ds.Tables.Add($"Fahrer{newWettkampf.ToString()}");
-        // }
+        private void addnewFahrerTable(int newWettkampf)
+        {
+            ds.Tables.Add($"Fahrer{newWettkampf.ToString()}");
+        }
 
         private void runOut()
         {
@@ -143,13 +149,26 @@ namespace ProjektWinForm.ManageWettkampf
             MessageBox.Show($"Der Wettkampf wurde Eingepflegt.");
         }
 
-        private DataRow addNewWettkampf()
+        private DataRow[] addNewWettkampf()
         {
-            DataRow dr = ds.Tables[0].NewRow();
-            dr["DatumWettkampf"] = _application.dateTimePicker1.Value.Date;
-            dr["Bezeichnung"] = _application.textBox1.Text;
-            dr["StreckeID"] = int.Parse(_application.comboBox2.Text);
-            ds.Tables[0].Rows.Add(dr);
+            string s2 = $" StreckeID = {_application.comboBox2.Text} AND";
+            string s3 = s2 + $" Bezeichnung = '{_application.textBox1.Text}'";
+            DataRow[] dr = ds.Tables[0].Select($"{s3}");
+            
+            if (!dr.Length.Equals(0))
+            {
+                DataRow dre = ds.Tables[0].NewRow();
+                dre["DatumWettkampf"] = _application.dateTimePicker1.Value.Date;
+                dre["Bezeichnung"] = _application.textBox1.Text;
+                dre["StreckeID"] = int.Parse(_application.comboBox2.Text);
+                ds.Tables[0].Rows.Add(dre);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Es ist bereits ein Wettkampf mit dieser Bezeichnung vorhanden.\nBitte löchen Sie diesen zuerst.",
+                    "Information", MessageBoxButtons.OK);
+            }
             return dr;
         }
 
@@ -287,6 +306,29 @@ namespace ProjektWinForm.ManageWettkampf
             dr["DatumWettkampf"] = _application.dateTimePicker2.Text;
             dr["Bezeichnung"] = _application.textBox3.Text;
             dr["StreckeID"] = _application.comboBox3.Text;
+        }
+
+        public string setBez()
+        {
+            string bez = string.Empty;
+            fillDataSet("Wettkampf");
+            DataRow[] dr = new DataRow[] { };
+            if (_application.tabControl1.SelectedIndex.Equals(1))
+            {
+                dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox1.Text}");
+            }
+            else if (_application.tabControl1.SelectedIndex.Equals(2))
+            {
+                dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox4.Text}");
+            }
+
+            foreach (var dataRow in dr)
+            {
+                bez = dataRow.ItemArray[2].ToString();
+            }
+
+            return bez;
+
         }
     }
 }
