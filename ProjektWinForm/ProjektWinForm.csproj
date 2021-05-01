@@ -53,6 +53,7 @@
     <Compile Include="Abfrage\AbfrageWinForm.Designer.cs">
       <DependentUpon>AbfrageWinForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Abfrage\AbfrageWinFormLogik.cs" />
     <Compile Include="Application\Application.cs">
       <SubType>Form</SubType>
     </Compile>

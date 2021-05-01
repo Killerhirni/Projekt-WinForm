@@ -109,9 +109,12 @@ namespace ProjektWinForm.Application
             AFW = new AskForWettkampf();
             AFW.setProperties(this);
             AFW.ShowDialog();
-            ABF = new AbfrageWinForm();
-            ABF.setProperties(this);
-            ABF.ShowDialog();
+            if (WettkampfID != 0)
+            {
+                ABF = new AbfrageWinForm();
+                ABF.setProperties(this);
+                ABF.ShowDialog();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -119,6 +122,11 @@ namespace ProjektWinForm.Application
             MSTZW = new ManageStreckenZeitWinForm(lk);
             MSTZW.setProperties(this);
             MSTZW.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

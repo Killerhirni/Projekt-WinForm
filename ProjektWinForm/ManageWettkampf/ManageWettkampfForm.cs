@@ -36,6 +36,7 @@ namespace ProjektWinForm.ManageWettkampf
             {
                 textBox5.Text = "Bezeichnung des Wettkampfes";
                 textBox4.Text = "Bezeichnung des Wettkampfes";
+                textBox2.Text = "Auto Wert";
                 button3.Visible = false;
                 button1.Text = "Add";
                 MWFL.loadCombo("Strecke");

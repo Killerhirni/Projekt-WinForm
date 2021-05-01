@@ -94,7 +94,7 @@ namespace ProjektWinForm.ManageWettkampf
             {
                 fillDataSet("Wettkampf");
                 var dre = addNewWettkampf();
-                if (!dre.Length.Equals(0))
+                if (dre.Length.Equals(0))
                 {
                     UpdateTable();
                     int newWettkampf = getNewId();
@@ -155,10 +155,10 @@ namespace ProjektWinForm.ManageWettkampf
             string s3 = s2 + $" Bezeichnung = '{_application.textBox1.Text}'";
             DataRow[] dr = ds.Tables[0].Select($"{s3}");
             
-            if (!dr.Length.Equals(0))
+            if (dr.Length.Equals(0))
             {
                 DataRow dre = ds.Tables[0].NewRow();
-                dre["DatumWettkampf"] = _application.dateTimePicker1.Value.Date;
+                dre["WettkampfDatum"] = _application.dateTimePicker1.Value.Date;
                 dre["Bezeichnung"] = _application.textBox1.Text;
                 dre["StreckeID"] = int.Parse(_application.comboBox2.Text);
                 ds.Tables[0].Rows.Add(dre);
