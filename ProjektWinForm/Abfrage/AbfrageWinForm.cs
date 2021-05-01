@@ -31,9 +31,19 @@ namespace ProjektWinForm.Abfrage
 
         private void AbfrageWinForm_Load(object sender, EventArgs e)
         {
-            ABWFL.setProperties(this,_form1Application);
-            ABWFL.loadConn("Wettkampf");
-            // ABWFL.SQLSHOW();
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+                ABWFL.setProperties(this,_form1Application);
+                ABWFL.loadConn("Wettkampf");
+                // ABWFL.SQLSHOW();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Access File aus.\nDies können Sie unter dem Einstellungsbutton oben Rechts machen.",
+                    "Information", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
     }
 

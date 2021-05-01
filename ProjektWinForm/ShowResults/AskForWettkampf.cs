@@ -29,8 +29,19 @@ namespace ProjektWinForm.ShowResults
 
         private void AskForWettkampf_Load(object sender, EventArgs e)
         {
-            AFWL.setProperties(this, _form1Application);
-            AFWL.loadCombo("Wettkampf");
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+
+                AFWL.setProperties(this, _form1Application);
+                AFWL.loadCombo("Wettkampf");
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Access File aus.\nDies können Sie unter dem Einstellungsbutton oben Rechts machen.",
+                    "Information", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

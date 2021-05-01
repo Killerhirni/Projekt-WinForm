@@ -21,9 +21,19 @@ namespace ProjektWinForm.Manageteam
 
         private void ManageTeamsForm_Load(object sender, EventArgs e)
         {
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            MTFL.SetProperties(sender);
-            MTFL.loadCombo();
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+                this.FormBorderStyle = FormBorderStyle.FixedDialog;
+                MTFL.SetProperties(sender);
+                MTFL.loadCombo();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Access File aus.\nDies können Sie unter dem Einstellungsbutton oben Rechts machen.",
+                    "Information", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -87,12 +87,21 @@ namespace ProjektWinForm.ManageWettkampf
 
         private void ManageWettkampfForm_Load(object sender, EventArgs e)
         {
-            button3.Visible = false;
-            MWFL.setProperties(sender);
-            MWFL.loadCombo("Strecke");
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "MM/dd/yyyy";
-
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+                button3.Visible = false;
+                MWFL.setProperties(sender);
+                MWFL.loadCombo("Strecke");
+                dateTimePicker1.Format = DateTimePickerFormat.Custom;
+                dateTimePicker1.CustomFormat = "MM/dd/yyyy";
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Access File aus.\nDies können Sie unter dem Einstellungsbutton oben Rechts machen.",
+                    "Information", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

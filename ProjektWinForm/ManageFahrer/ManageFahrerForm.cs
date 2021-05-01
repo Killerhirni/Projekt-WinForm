@@ -27,10 +27,20 @@ namespace ProjektWinForm.ManageFahrer
 
         private void ManageFahrerForm_Load(object sender, EventArgs e)
         {
-            MFFL.setProperties(this);
-            MFFL.loadCombo("Team");
-            MFFL.loadCombo("Wettkampf");
-            button3.Visible = false;
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+                MFFL.setProperties(this);
+                MFFL.loadCombo("Team");
+                MFFL.loadCombo("Wettkampf");
+                button3.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Access File aus.\nDies können Sie unter dem Einstellungsbutton oben Rechts machen.",
+                    "Information", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)

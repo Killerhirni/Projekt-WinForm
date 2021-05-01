@@ -27,10 +27,20 @@ namespace ProjektWinForm.Manage_Strecke
 
         private void ManageStreckeWinForm_Load(object sender, EventArgs e)
         {
-            MSWL = new ManageStreckeWinFormLogic(lkk);
-            MSWL.setProperties(this, _form1Application);
-            MSWL.loadCombo("Strecke");
-            button1.Visible = false;
+            if (Properties.Settings.Default.StartFile != "none")
+            {
+                MSWL = new ManageStreckeWinFormLogic(lkk);
+                MSWL.setProperties(this, _form1Application);
+                MSWL.loadCombo("Strecke");
+                button1.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Access File aus.\nDies können Sie unter dem Einstellungsbutton oben Rechts machen.",
+                    "Information", MessageBoxButtons.OK);
+                this.Close();
+            }
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
