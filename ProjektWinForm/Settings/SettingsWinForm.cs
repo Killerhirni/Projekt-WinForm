@@ -22,10 +22,15 @@
 
         private void saveFileSettings_btn_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.StartFile != "none")
+            if (!Properties.Settings.Default.StartFile.Equals(pathTextSettings.Text))
             {
                 settingsLogic.SafeFile();
             }
+            else
+            {
+                MessageBox.Show("Sie haben die Datei bereits ausgewählt.", "Information", MessageBoxButtons.OK);
+            }
+
             // Form1_Load(null, EventArgs.Empty);
         }
 
