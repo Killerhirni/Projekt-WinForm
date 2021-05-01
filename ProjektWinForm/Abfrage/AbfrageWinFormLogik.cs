@@ -38,7 +38,7 @@ namespace ProjektWinForm.Abfrage
             loadConn(text);
             da.Fill(ds);
             string SQL =
-                $"SELECT DISTINCT Fahrer.*, Wettkampf.WettkampfID, Wettkampf.Bezeichnung, Team.Teamname\r\nFROM Wettkampf INNER JOIN (Team INNER JOIN (Fahrer INNER JOIN Teilnahme ON Fahrer.Startnummer = Teilnahme.Startnummer) ON Team.TeamID = Fahrer.TeamID ) ON Wettkampf.WettkampfID = Teilnahme.WettkampfID\r\nWHERE Wettkampf.WettkampfID = { _form1Application.WettkampfID}\r\nORDER BY Fahrer.Streckenzeit;";
+                $"SELECT DISTINCT Fahrer{_form1Application.WettkampfID.ToString()}.*, Wettkampf.WettkampfID, Wettkampf.Bezeichnung, Team.Teamname\r\nFROM Wettkampf INNER JOIN (Team INNER JOIN (Fahrer{_form1Application.WettkampfID.ToString()} INNER JOIN Teilnahme ON Fahrer{_form1Application.WettkampfID.ToString()}.Startnummer = Teilnahme.Startnummer) ON Team.TeamID = Fahrer{_form1Application.WettkampfID.ToString()}.TeamID ) ON Wettkampf.WettkampfID = Teilnahme.WettkampfID\r\nWHERE Wettkampf.WettkampfID = { _form1Application.WettkampfID}\r\nORDER BY Fahrer{_form1Application.WettkampfID.ToString()}.Streckenzeit;";
             try
             {
                 conn.Open();

@@ -49,6 +49,12 @@ namespace ProjektWinForm.Manageteam
             else
             {
                 MTFL.saveEditedRow();
+                textBox9.Clear();
+                textBox10.Clear();
+                textBox11.Clear();
+                textBox12.Clear();
+                textBox13.Clear();
+                textBox14.Clear();
             }
         }
 

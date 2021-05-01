@@ -393,6 +393,7 @@
             this.Controls.Add(this.advancedManager_grpb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.HelpButton = true;
+            this.MaximizeBox = false;
             this.Name = "Application";
             this.Text = "App";
             this.Load += new System.EventHandler(this.Form1_Load);

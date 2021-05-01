@@ -241,13 +241,13 @@ namespace ProjektWinForm.Manage_Strecke
             DataRow[] foundRows = ds.Tables[0].Select($"StreckeID = {int.Parse(_application.comboBox1.Text)}");
             if (foundRows.Any())
             {
-                deleteRowWithFittingValue(foundRows);
                 var dr = deleteDialogQuestin();
                 if (dr == DialogResult.Yes)
                 {
+                    deleteRowWithFittingValue(foundRows);
+                    runOut();
                     loadCombo("Strecke");
                     messageBoxDelete();
-                    runOut();
                 }
                 else
                 {
@@ -279,7 +279,7 @@ namespace ProjektWinForm.Manage_Strecke
 
         private void deleteRowWithFittingValue(DataRow[] foundRows)
         {
-            foreach (DataRow dataRow in ds.Tables[0].Rows)
+            foreach (DataRow dataRow in foundRows)
             {
                 dataRow.Delete();
             }

@@ -172,5 +172,36 @@ namespace ProjektWinForm.ManageFahrer
         {
 
         }
+
+        private void textBox14_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox14.Text != string.Empty)
+            {
+                int i;
+                if (!int.TryParse(textBox6.Text, out i))
+                {
+                    MessageBox.Show("This is a number only field");
+                    textBox14.Clear();
+                }
+            }
+        }
+
+        private void textBox11_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox11.Text != string.Empty)
+            {
+                int i;
+                if (!int.TryParse(textBox6.Text, out i))
+                {
+                    MessageBox.Show("This is a number only field");
+                    textBox11.Clear();
+                }
+            }
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

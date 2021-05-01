@@ -392,6 +392,7 @@
             this.tabPage3.Size = new System.Drawing.Size(315, 211);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Edit Fahrer";
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // button6
             // 
@@ -417,6 +418,7 @@
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(100, 20);
             this.textBox11.TabIndex = 30;
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
             // 
             // textBox12
             // 
@@ -438,6 +440,7 @@
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(100, 20);
             this.textBox14.TabIndex = 27;
+            this.textBox14.TextChanged += new System.EventHandler(this.textBox14_TextChanged);
             // 
             // comboBox7
             // 
