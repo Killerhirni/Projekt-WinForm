@@ -167,5 +167,10 @@ namespace ProjektWinForm.ManageFahrer
             ManageWettkampfForm MWF = new ManageWettkampfForm(lk);
             MWF.ShowDialog();
         }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

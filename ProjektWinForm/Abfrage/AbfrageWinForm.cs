@@ -35,7 +35,7 @@ namespace ProjektWinForm.Abfrage
             {
                 ABWFL.setProperties(this,_form1Application);
                 ABWFL.loadConn("Wettkampf");
-                // ABWFL.SQLSHOW();
+                ABWFL.SQLSHOW("Fahrer");
             }
             else
             {
@@ -75,17 +75,27 @@ namespace ProjektWinForm.Abfrage
             _form1Application = form1Application;
         }
 
-        /*public void SQLSHOW()
+        public void SQLSHOW(string text)
         {
-            da = new OleDbDataAdapter(
-                $"SELECT Teilnahme.Startnummer, Fahrer.Vorname, Fahrer.Nachname, Team.TeamID, Team.Teamname, Teilnahme.Streckenzeit, Wettkampf.Bezeichnung, Teilnahme.Platzierung FROM Wettkampf INNER JOIN" +
-                $" (Team INNER JOIN (Fahrer INNER JOIN Teilnahme ON Fahrer.Startnummer = Teilnahme.Startnummer) ON Team.TeamID = Fahrer.TeamID) ON W" +
-                $"ettkampf.WettkampfID = {_form1Application.WettkampfID}", conn);
-            cmd = new OleDbCommandBuilder(da);
-            ds = new DataSet();
-            bs = new BindingSource();
+            loadConn(text);
             da.Fill(ds);
             _application.dataGridView1.DataSource = ds.Tables[0];
-        }*/
+            string SQL =
+                $"SELECT Fahrer.*, Teilnahme.Streckenzeit, Teilnahme.Platzierung, Wettkampf.WettkampfID, Wettkampf.Bezeichnung, Team.Teamname\nFROM Team INNER JOIN (Wettkampf INNER JOIN (Fahrer INNER JOIN Teilnahme ON Fahrer.Startnummer = Teilnahme.Startnummer) ON Wettkampf.WettkampfID = Teilnahme.WettkampfID) ON Team.TeamID = Fahrer.TeamID;";
+            cmdd = new OleDbCommand(SQL, conn);
+            try
+            {
+                conn.Open();
+                cmdd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
