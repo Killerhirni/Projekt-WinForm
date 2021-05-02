@@ -75,7 +75,7 @@ namespace ProjektWinForm.StreckenZeit
         public void loadCombo(string text)
         {
             fillDataSet(text);
-            if (_application.tabControl1.SelectedIndex.Equals(1))
+            if (_application.tabControl1.SelectedIndex.Equals(0))
             {
                 _application.comboBox1.Items.Clear();
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
@@ -83,7 +83,7 @@ namespace ProjektWinForm.StreckenZeit
                     _application.comboBox1.Items.Add(dataRow.ItemArray[2]);
                 }
             }
-            else if (_application.tabControl1.SelectedIndex.Equals(2))
+            else if (_application.tabControl1.SelectedIndex.Equals(1))
             {
                 _application.comboBox3.Items.Clear();
                 _application.comboBox4.Items.Clear();
