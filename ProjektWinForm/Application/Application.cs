@@ -65,12 +65,31 @@ namespace ProjektWinForm.Application
 
         private void btn_show_Click_1(object sender, EventArgs e)
         {
-            lk.ShowTable();
+            if (Properties.Settings.Default.StartFile != "none" || pathText.Text != "none")
+            {
+                lk.ShowTable();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Datei aus.\nDies können Sie unter den Einstellungen machen.", "Error",
+                    MessageBoxButtons.OK);
+            }
+
         }
 
         private void btn_Update_Click(object sender, EventArgs e)
         {
-            lk.Update();
+            if (Properties.Settings.Default.StartFile != "none" || pathText.Text != "none")
+            {
+                lk.Update();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Datei aus.\nDies können Sie unter den Einstellungen machen.", "Error",
+                    MessageBoxButtons.OK);
+            }
         }
 
         private void SearchPath_Click(object sender, EventArgs e)
@@ -80,7 +99,16 @@ namespace ProjektWinForm.Application
 
         private void openTable_Click(object sender, EventArgs e)
         {
-            lk.openTable();
+            if (Properties.Settings.Default.StartFile != "none" || pathText.Text != "none")
+            {
+                lk.openTable();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Bitte wählen Sie zuerst eine Datei aus.\nDies können Sie unter den Einstellungen machen.", "Error",
+                    MessageBoxButtons.OK);
+            }
         }
 
         private void manageFahrer_btn_Click(object sender, EventArgs e)
@@ -122,11 +150,6 @@ namespace ProjektWinForm.Application
             MSTZW = new ManageStreckenZeitWinForm(lk);
             MSTZW.setProperties(this);
             MSTZW.ShowDialog();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
