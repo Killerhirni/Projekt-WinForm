@@ -49,6 +49,7 @@ namespace ProjektWinForm.Abfrage
                 adapter.SelectCommand = cmdd;
                 adapter.Fill(table);
                 _application.dataGridView1.DataSource = table;
+                _application.dataGridView1.Columns["Streckenzeit"].DefaultCellStyle.Format = "HH:mm:ss";
                 platzierung(table);
             }
             catch (Exception e)
