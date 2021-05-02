@@ -36,6 +36,19 @@ namespace ProjektWinForm.StreckenZeit
         {
             _form1Application = application;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex.Equals(0))
+            {
+                MSZWL.AddTime();
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MSZWL.loadComboStartnummer("Teilnahme");
+        }
     }
 
     internal class ManageStreckenZeitWinFormLogic
@@ -68,7 +81,6 @@ namespace ProjektWinForm.StreckenZeit
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
                 {
                     _application.comboBox1.Items.Add(dataRow.ItemArray[2]);
-                    _application.comboBox2.Items.Add(dataRow.ItemArray[1]);
                 }
             }
             else if (_application.tabControl1.SelectedIndex.Equals(2))
@@ -78,20 +90,56 @@ namespace ProjektWinForm.StreckenZeit
                 foreach (DataRow dataRow in ds.Tables[0].Rows)
                 {
                     _application.comboBox4.Items.Add(dataRow.ItemArray[2]);
-                    _application.comboBox3.Items.Add(dataRow.ItemArray[1]);
                 }
             }
         }
 
         private void fillDataSet(string text)
         {
-            conn = new OleDbConnection(
-                $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
-            da = new OleDbDataAdapter($"select * from {text}", conn);
-            cmd = new OleDbCommandBuilder(da);
-            ds = new DataSet();
-            da.Fill(ds);
+            try
+            {
+                conn = new OleDbConnection(
+                    $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
+                da = new OleDbDataAdapter($"select * from {text}", conn);
+                cmd = new OleDbCommandBuilder(da);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"There was an Error\nErrorMessage:\n{e.Message}", "Error", MessageBoxButtons.OK);
+            }
 
+        }
+
+        public void AddTime()
+        {
+            if (_application.comboBox1.Text != string.Empty && _application.comboBox2.Text != string.Empty && _application.dateTimePicker1.Value.TimeOfDay.ToString() != "00:00:00")
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Bitte füllen Sie alle felder aus.", "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        public void loadComboStartnummer(string text)
+        {
+            fillDataSet(text);
+            DataRow[] dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox1.Text}");
+            if (dr.Any())
+            {
+                foreach (var dataRow in dr)
+                {
+                    _application.comboBox2.Items.Add(dataRow.ItemArray[1]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Für diesen Wettkampf wurden noch keine Fahrer angelegt.\nBitte legen Sie welche an.",
+                    "Error", MessageBoxButtons.OK);
+            }
         }
     }
 }

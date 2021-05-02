@@ -100,8 +100,8 @@ namespace ProjektWinForm.ManageWettkampf
                 button3.Visible = false;
                 MWFL.setProperties(sender);
                 MWFL.loadCombo("Strecke");
-                dateTimePicker1.Format = DateTimePickerFormat.Custom;
-                dateTimePicker1.CustomFormat = "MM/dd/yyyy";
+                // dateTimePicker1.Format = DateTimePickerFormat.Custom;
+                // dateTimePicker1.CustomFormat = "MM/dd/yyyy";
             }
             else
             {
@@ -155,6 +155,38 @@ namespace ProjektWinForm.ManageWettkampf
         {
             MSWF = new ManageStreckeWinForm(lkk);
             MSWF.ShowDialog();
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox6.Text != string.Empty)
+            {
+                int i;
+                if (!int.TryParse(textBox6.Text, out i))
+                {
+                    MessageBox.Show("This is a number only field");
+                    textBox6.Clear();
+                }
+            }
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox7.Text != string.Empty)
+            {
+                int i;
+                if (!int.TryParse(textBox7.Text, out i))
+                {
+                    MessageBox.Show("This is a number only field");
+                    textBox7.Clear();
+                }
+            }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

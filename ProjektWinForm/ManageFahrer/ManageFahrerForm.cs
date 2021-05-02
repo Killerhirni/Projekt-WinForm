@@ -95,6 +95,10 @@ namespace ProjektWinForm.ManageFahrer
                 textBox11.Clear();
                 textBox12.Clear();
                 textBox13.Clear();
+                textBox16.Clear();
+                textBox15.Clear();
+                comboBox7.Items.Clear();
+                comboBox3.Items.Clear();
             }
         }
 
@@ -140,14 +144,14 @@ namespace ProjektWinForm.ManageFahrer
         {
             var a = MFFL.setBez();
             textBox8.Text = a;
-            MFFL.loadCombo($"Fahrer{comboBox5.Text}");
+            MFFL.loadCombo($"Teilnahme");
         }
 
         private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
             var a = MFFL.setBez();
             textBox9.Text = a;
-            MFFL.loadCombo($"Fahrer{comboBox6.Text}");
+            MFFL.loadCombo($"Teilnahme");
             MFFL.loadCombo("Team");
         }
 

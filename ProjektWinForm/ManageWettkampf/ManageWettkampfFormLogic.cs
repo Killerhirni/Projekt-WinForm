@@ -91,7 +91,7 @@ namespace ProjektWinForm.ManageWettkampf
 
         public void addWettkampf()
         {
-            if (_application.comboBox2.Text != string.Empty && _application.dateTimePicker1.Text != string.Empty && _application.textBox1.Text != string.Empty)
+            if (_application.comboBox2.Text != string.Empty && _application.dateTimePicker1.Text != string.Empty && _application.textBox1.Text != string.Empty && _application.textBox7.Text != string.Empty)
             {
                 fillDataSet("Wettkampf");
                 var dre = addNewWettkampf();
@@ -99,7 +99,7 @@ namespace ProjektWinForm.ManageWettkampf
                 {
                     UpdateTable();
                     int newWettkampf = getNewId();
-                    addnewFahrerTable(newWettkampf);
+                    // addnewFahrerTable(newWettkampf);
                     messageBoxAdd();
                     runOut();
                 }
@@ -133,10 +133,10 @@ namespace ProjektWinForm.ManageWettkampf
             da.Update(ds);
         }
 
-        private void addnewFahrerTable(int newWettkampf)
-        {
-            ds.Tables.Add($"Fahrer{newWettkampf.ToString()}");
-        }
+        // private void addnewFahrerTable(int newWettkampf)
+        // {
+        //     ds.Tables.Add($"Fahrer{newWettkampf.ToString()}");
+        // }
 
         private void runOut()
         {
@@ -152,6 +152,7 @@ namespace ProjektWinForm.ManageWettkampf
 
         private DataRow[] addNewWettkampf()
         {
+            string s1 = $"WettkampfDatum = {_application.dateTimePicker2.Value.Date}";
             string s2 = $" StreckeID = {_application.comboBox2.Text} AND";
             string s3 = s2 + $" Bezeichnung = '{_application.textBox1.Text}'";
             DataRow[] dr = ds.Tables[0].Select($"{s3}");
@@ -162,6 +163,7 @@ namespace ProjektWinForm.ManageWettkampf
                 dre["WettkampfDatum"] = _application.dateTimePicker1.Value.Date;
                 dre["Bezeichnung"] = _application.textBox1.Text;
                 dre["StreckeID"] = int.Parse(_application.comboBox2.Text);
+                dre["Startgeld"] = int.Parse(_application.textBox7.Text);
                 ds.Tables[0].Rows.Add(dre);
             }
             else
@@ -256,14 +258,36 @@ namespace ProjektWinForm.ManageWettkampf
         {
             if (_application.comboBox4.Text != string.Empty)
             {
-                fillDataSet($"Wettkampf");
-                DataRow[] foundRows = ds.Tables[0].Select($"WettkampfID = {_application.comboBox4.Text}");
-                foreach (var foundRow in foundRows)
+                if (_application.comboBox3.Text != string.Empty)
                 {
-                    _application.comboBox3.Text = foundRow.ItemArray[3].ToString();
-                    _application.textBox3.Text = foundRow.ItemArray[2].ToString();
-                    DateTime date = (DateTime)foundRow.ItemArray[1];
-                    _application.dateTimePicker2.Text = foundRow.ItemArray[1].ToString();
+                    fillDataSet($"Wettkampf");
+                    DataRow[] foundRows = ds.Tables[0].Select($"WettkampfID = '{_application.comboBox4.Text}' AND StreckeID = '{_application.comboBox3.Text}'");
+                    if (foundRows.Any())
+                    {
+                        foreach (var foundRow in foundRows)
+                        {
+                            _application.comboBox3.Text = foundRow.ItemArray[3].ToString();
+                            _application.textBox3.Text = foundRow.ItemArray[2].ToString();
+                            DateTime date = (DateTime)foundRow.ItemArray[1];
+                            _application.dateTimePicker2.Text = foundRow.ItemArray[1].ToString();
+                            _application.textBox6.Text = foundRow.ItemArray[4].ToString();
+                        }
+                    }
+                    else
+                    {
+                        var SID = 0;
+                        DataRow[] foundRows2 = ds.Tables[0].Select($"WettkampfID = '{_application.comboBox4.Text}'");
+                        foreach (var dataRow in foundRows2)
+                        {
+                            SID = int.Parse(dataRow.ItemArray[3].ToString());
+                        }
+                        MessageBox.Show($"Diesen Wettkampf gibt es mit dieser Strecke nicht.\n Der Ausgewählte Wettkampf hätte die StreckenID:{SID}.", "Error",
+                            MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Bitte wählen Sie eine passede StreckenID aus.", "Fehler", MessageBoxButtons.OK);
                 }
             }
             else
@@ -276,7 +300,7 @@ namespace ProjektWinForm.ManageWettkampf
         public void saveEdit()
         {
             if (_application.comboBox4.Text != string.Empty && _application.comboBox3.Text != string.Empty &&
-                _application.dateTimePicker1.Text != string.Empty && _application.textBox3.Text != string.Empty)
+                _application.dateTimePicker1.Text != string.Empty && _application.textBox3.Text != string.Empty && _application.textBox6.Text != string.Empty)
             {
 
                 fillDataSet($"Wettkampf");
@@ -310,6 +334,7 @@ namespace ProjektWinForm.ManageWettkampf
             dr["WettkampfDatum"] = _application.dateTimePicker2.Text;
             dr["Bezeichnung"] = _application.textBox3.Text;
             dr["StreckeID"] = _application.comboBox3.Text;
+            dr["Startgeld"] = int.Parse(_application.textBox6.Text);
         }
 
         public string setBez()

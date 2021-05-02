@@ -23,6 +23,7 @@ namespace ProjektWinForm.ManageFahrer
         public void loadCombo(string text)
         {
             fillDataSet(text);
+            DataRow[] dr = new DataRow[] { };
             if (text != "Wettkampf")
             {
                 if (text != "Team")
@@ -39,24 +40,43 @@ namespace ProjektWinForm.ManageFahrer
                     {
                         _application.comboBox3.Items.Clear();
                     }
-
-                    foreach (DataRow dataRow in ds.Tables[0].Rows)
+                    if (_application.tabControl1.SelectedIndex.Equals(2))
                     {
-                        if (_application.tabControl1.SelectedIndex.Equals(1))
+                        dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox6.Text}");
+                    }
+                    else if (_application.tabControl1.SelectedIndex.Equals(1))
+                    {
+                        dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox5.Text}");
+                    }
+                    if (dr.Any())
+                    {
+                        foreach (DataRow dataRow in dr)
                         {
-                            _application.comboBox2.Items.Add(dataRow.ItemArray[0]);
-                        }
-                        else if (_application.tabControl1.SelectedIndex.Equals(0))
-                        {
-                            _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
-                        }
-                        else if (_application.tabControl1.SelectedIndex.Equals(2))
-                        {
-                            _application.comboBox3.Items.Add(dataRow.ItemArray[0]);
+                            if (_application.tabControl1.SelectedIndex.Equals(1))
+                            {
+                                _application.comboBox2.Items.Add(dataRow.ItemArray[1]);
+                            }
+                            else if (_application.tabControl1.SelectedIndex.Equals(0))
+                            {
+                                _application.comboBox1.Items.Add(dataRow.ItemArray[1]);
+                            }
+                            else if (_application.tabControl1.SelectedIndex.Equals(2))
+                            {
+                                _application.comboBox3.Items.Add(dataRow.ItemArray[1]);
+                            }
                         }
                     }
+                    else
+                    {
+
+                        MessageBox.Show(
+                            "Für diesen Wettkampf git es noch keine Fahrer.\nBite pflegen Sie zuerst einen ein.",
+                            "Error", MessageBoxButtons.OK);
+
+
+                    }
                 }
-                else if(_application.tabControl1.SelectedIndex.Equals(0))
+                else if (_application.tabControl1.SelectedIndex.Equals(0))
                 {
                     _application.comboBox1.Items.Clear();
                     foreach (DataRow dataRow in ds.Tables[0].Rows)
@@ -64,7 +84,7 @@ namespace ProjektWinForm.ManageFahrer
                         _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
                     }
                 }
-                else if(_application.tabControl1.SelectedIndex.Equals(2))
+                else if (_application.tabControl1.SelectedIndex.Equals(2))
                 {
                     _application.comboBox7.Items.Clear();
                     foreach (DataRow dataRow in ds.Tables[0].Rows)
@@ -101,12 +121,19 @@ namespace ProjektWinForm.ManageFahrer
 
         public void fillDataSet(string text)
         {
-            conn = new OleDbConnection(
-                $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
-            da = new OleDbDataAdapter($"select * from {text}", conn);
-            cmd = new OleDbCommandBuilder(da);
-            ds = new DataSet();
-            da.Fill(ds);
+            try
+            {
+                conn = new OleDbConnection(
+                    $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
+                da = new OleDbDataAdapter($"select * from {text}", conn);
+                cmd = new OleDbCommandBuilder(da);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         public void setProperties(ManageFahrerForm manageFahrerForm)
@@ -116,20 +143,32 @@ namespace ProjektWinForm.ManageFahrer
 
         public void addFahrerToWettkampf()
         {
-            if (_application.comboBox4.Text != string.Empty && _application.comboBox1.Text != string.Empty && _application.textBox2.Text != string.Empty && _application.textBox3.Text != string.Empty &&
-                _application.textBox4.Text != string.Empty && _application.textBox5.Text != string.Empty &&
-                _application.textBox6.Text != string.Empty)
+            fillDataSet("Fahrer");
+            var s1 = $"Vorname = '{_application.textBox17.Text}'";
+            var s2 = s1 + $" AND Nachname = '{_application.textBox18.Text}'";
+            DataRow[] dr = ds.Tables[0].Select(s2);
+
+            if (!dr.Any())
             {
-                fillDataSet($"Fahrer{_application.comboBox4.Text}");
-                addNewFahrer();
-                UpdateTable();
-                setTeilnahme("Add");
-                messageBoxAdd();
-                runOut();
+                if (_application.comboBox4.Text != string.Empty && _application.comboBox1.Text != string.Empty && _application.textBox2.Text != string.Empty && _application.textBox3.Text != string.Empty &&
+                    _application.textBox4.Text != string.Empty && _application.textBox5.Text != string.Empty &&
+                    _application.textBox6.Text != string.Empty && _application.textBox17.Text != string.Empty && _application.textBox18.Text != string.Empty)
+                {
+                    fillDataSet($"Fahrer");
+                    addNewFahrer();
+                    UpdateTable();
+                    setTeilnahme("Add");
+                    messageBoxAdd();
+                    runOut();
+                }
+                else
+                {
+                    MessageBox.Show("You left a Field Empty!", "Information", MessageBoxButtons.OK);
+                }
             }
             else
             {
-                MessageBox.Show("You left a Field Empty!", "Information", MessageBoxButtons.OK);
+                MessageBox.Show("Der Fahrer nimmt bereits am Wettkampf teil.", "Fehler", MessageBoxButtons.OK);
             }
         }
 
@@ -143,7 +182,8 @@ namespace ProjektWinForm.ManageFahrer
             if (text == "Add")
             {
                 addTeilnahme($"FahrerAlter = {int.Parse(_application.textBox2.Text)} AND TeamID = {int.Parse(_application.comboBox1.Text)} AND PLZ = {int.Parse(_application.textBox5.Text)}");
-            }else if (text == "Delete")
+            }
+            else if (text == "Delete")
             {
                 deleteTeilnahme($"Startnummer = {int.Parse(_application.comboBox2.Text)}");
             }
@@ -152,7 +192,7 @@ namespace ProjektWinForm.ManageFahrer
         private void deleteTeilnahme(string selectString)
         {
             var Startnummer = 0;
-            fillDataSet($"Fahrer{_application.comboBox5.Text}");
+            fillDataSet($"Fahrer");
             returnStartnummer(Startnummer, selectString);
             fillDataSet($"Teilnahme");
             DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox2.Text}");
@@ -162,9 +202,9 @@ namespace ProjektWinForm.ManageFahrer
         private void addTeilnahme(string selectString)
         {
             var Startnummer = 0;
-            fillDataSet($"Fahrer{_application.comboBox4.Text}");
+            fillDataSet($"Fahrer");
             Startnummer = returnStartnummer(Startnummer, selectString);
-            fillDataSet($"Teilnahme"); 
+            fillDataSet($"Teilnahme");
             DataRow dr = ds.Tables[0].NewRow();
             dr["Startnummer"] = Startnummer;
             dr["WettkampfID"] = int.Parse(_application.comboBox4.Text);
@@ -177,7 +217,7 @@ namespace ProjektWinForm.ManageFahrer
                 .Select(selectString);
             foreach (var dataRow in drF)
             {
-                Startnummer = (int) dataRow.ItemArray[0];
+                Startnummer = (int)dataRow.ItemArray[0];
             }
 
             return Startnummer;
@@ -188,17 +228,17 @@ namespace ProjektWinForm.ManageFahrer
             da.Update(ds);
             if (_application.tabControl1.SelectedIndex.Equals(0))
             {
-                lk.UpdateAfterAdd($"Fahrer{_application.comboBox4.Text}");
+                lk.UpdateAfterAdd($"Fahrer");
             }
             else if (_application.tabControl1.SelectedIndex.Equals(1))
             {
-                lk.UpdateAfterAdd($"Fahrer{_application.comboBox5.Text}");
+                lk.UpdateAfterAdd($"Fahrer");
                 _application.comboBox2.Items.Clear();
-                loadCombo($"Fahrer{_application.comboBox5.Text}");
+                loadCombo($"Fahrer");
             }
             else if (_application.tabControl1.SelectedIndex.Equals(2))
             {
-                lk.UpdateAfterAdd($"Fahrer{_application.comboBox6.Text}");
+                lk.UpdateAfterAdd($"Fahrer");
             }
         }
 
@@ -216,6 +256,8 @@ namespace ProjektWinForm.ManageFahrer
             dr["Hausnummer"] = _application.textBox4.Text;
             dr["Ort"] = _application.textBox6.Text;
             dr["PLZ"] = int.Parse(_application.textBox5.Text);
+            dr["Nachname"] = _application.textBox16.Text;
+            dr["Vorname"] = _application.textBox15.Text;
             ds.Tables[0].Rows.Add(dr);
         }
 
@@ -229,7 +271,7 @@ namespace ProjektWinForm.ManageFahrer
                     {
                         setTeilnahme("Delete");
                         UpdateTable();
-                        fillDataSet($"Fahrer{_application.comboBox5.Text}");
+                        fillDataSet($"Fahrer");
                         selectRowByInput();
                     }
                     else
@@ -305,7 +347,7 @@ namespace ProjektWinForm.ManageFahrer
                 _application.textBox11.Text != string.Empty && _application.textBox12.Text != string.Empty &&
                 _application.textBox13.Text != string.Empty && _application.textBox14.Text != string.Empty)
             {
-                fillDataSet($"Fahrer{_application.comboBox6.Text}");
+                fillDataSet($"Fahrer");
                 DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
                 foreach (var foundRow in foundRows)
                 {
@@ -347,6 +389,9 @@ namespace ProjektWinForm.ManageFahrer
             dr["Ort"] = _application.textBox10.Text;
             dr["PLZ"] = _application.textBox11.Text;
             dr["FahrerAlter"] = _application.textBox14.Text;
+            dr["Vorname"] = _application.textBox15.Text;
+            dr["Nachname"] = _application.textBox16.Text;
+            dr["TeamID"] = _application.comboBox7.Text;
         }
 
         public string setBez()
@@ -381,24 +426,21 @@ namespace ProjektWinForm.ManageFahrer
             {
                 if (_application.comboBox3.Text != string.Empty)
                 {
-                    if (_application.comboBox7.Text != string.Empty)
+                    fillDataSet($"Fahrer");
+                    DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
+                    foreach (var foundRow in foundRows)
                     {
-                        fillDataSet($"Fahrer{_application.comboBox6.Text}");
-                        DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
-                        foreach (var foundRow in foundRows)
-                        {
-                            _application.textBox10.Text = foundRow.ItemArray[3].ToString();
-                            _application.textBox11.Text = foundRow.ItemArray[4].ToString();
-                            _application.textBox12.Text = foundRow.ItemArray[2].ToString();
-                            _application.textBox13.Text = foundRow.ItemArray[1].ToString();
-                            _application.textBox14.Text = foundRow.ItemArray[5].ToString();
-                        }
+                        _application.comboBox7.SelectedIndex =
+                            _application.comboBox7.FindString(foundRow.ItemArray[8].ToString());
+                        _application.textBox15.Text = foundRow.ItemArray[1].ToString();
+                        _application.textBox16.Text = foundRow.ItemArray[2].ToString();
+                        _application.textBox10.Text = foundRow.ItemArray[5].ToString();
+                        _application.textBox11.Text = foundRow.ItemArray[6].ToString();
+                        _application.textBox12.Text = foundRow.ItemArray[4].ToString();
+                        _application.textBox13.Text = foundRow.ItemArray[3].ToString();
+                        _application.textBox14.Text = foundRow.ItemArray[7].ToString();
                     }
-                    else
-                    {
-                        MessageBox.Show("Die TeamID ist nicht gefüllt.\nBitte wenden Sie sich an den Administrator",
-                            "Error", MessageBoxButtons.OK);
-                    }
+
                 }
                 else
                 {
@@ -415,7 +457,7 @@ namespace ProjektWinForm.ManageFahrer
         {
             if (_application.comboBox6.Text != string.Empty && _application.comboBox6.Text != string.Empty)
             {
-                fillDataSet($"Fahrer{_application.comboBox6.Text}");
+                fillDataSet($"Fahrer");
                 DataRow[] foundRows = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
                 foreach (var foundRow in foundRows)
                 {

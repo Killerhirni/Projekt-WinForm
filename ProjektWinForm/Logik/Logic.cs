@@ -148,6 +148,7 @@ namespace ProjektWinForm.Logik
                 try
                 {
                     da.Update(ds.Tables[0]);
+                    MessageBox.Show("Your Table got Updated", "Information", MessageBoxButtons.OK);
                 }
                 catch (Exception e)
                 {
@@ -173,22 +174,32 @@ namespace ProjektWinForm.Logik
                 }
                 if (otherFile != _application.pathText.Text)
                 {
-                    DialogResult dialogResult =
-                    MessageBox.Show(
-                        "If you accept your current File will close. \nAre you Sure you want to Open another File?",
-                        "Warning", MessageBoxButtons.YesNo);
-
-                    if (dialogResult == DialogResult.Yes)
+                    if (_application.dataGridView1.DataSource != null)
+                    {
+                        DialogResult dialogResult =
+                            MessageBox.Show(
+                                "If you accept your current File will close. \nAre you Sure you want to Open another File?",
+                                "Warning", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            if (otherFile != string.Empty)
+                            {
+                                Load(otherFile);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("You denied.\nYour File is still Open.", "Information", MessageBoxButtons.OK);
+                        }
+                    }
+                    else
                     {
                         if (otherFile != string.Empty)
                         {
                             Load(otherFile);
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("You denied.\nYour File is still Open.", "Information", MessageBoxButtons.OK);
-                    }
+
                 }
                 else
                 {
