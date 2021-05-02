@@ -41,6 +41,12 @@ namespace ProjektWinForm.Manageteam
             if (tabControl1.SelectedIndex == 0)
             {
                 MTFL.addTeam();
+                textBox2.Clear();
+                textBox3.Clear();
+                textBox4.Clear();
+                textBox5.Clear();
+                textBox6.Clear();
+                textBox7.Clear();
             }
             else if(tabControl1.SelectedIndex ==1)
             {
