@@ -45,7 +45,7 @@ namespace ProjektWinForm.Abfrage
             loadConn(text);
             da.Fill(ds);
             string SQL =
-                $"SELECT DISTINCT Fahrer.*, Team.Teamname, Teilnahme.Streckenzeit,Wettkampf.WettkampfID, Wettkampf.Bezeichnung, Teilnahme.Platzierung\r\nFROM Wettkampf INNER JOIN (Team INNER JOIN (Fahrer INNER JOIN Teilnahme ON Fahrer.Startnummer=Teilnahme.Startnummer) ON Team.TeamID=Fahrer.TeamID) ON Wettkampf.WettkampfID = Teilnahme.WettkampfID\r\nWHERE Wettkampf.WettkampfID = {_form1Application.WettkampfID}\r\nORDER BY Teilnahme.Streckenzeit;";
+                $"SELECT DISTINCT Fahrer.*, Team.Teamname, Teilnahme.Streckenzeit,Wettkampf.WettkampfID, Wettkampf.Bezeichnung, Teilnahme.Platzierung\r\nFROM Wettkampf INNER JOIN (Team INNER JOIN (Fahrer INNER JOIN Teilnahme ON Fahrer.Startnummer=Teilnahme.Startnummer) ON Team.TeamID=Fahrer.TeamID) ON Wettkampf.WettkampfID = Teilnahme.WettkampfID\r\nWHERE Wettkampf.WettkampfID = {_form1Application.WettkampfID}\r\n AND Teilnahme.Streckenzeit IS NOT NULL ORDER BY Teilnahme.Streckenzeit;";
             try
             {
                 conn.Open();
@@ -55,13 +55,24 @@ namespace ProjektWinForm.Abfrage
                 table.Locale = System.Globalization.CultureInfo.InvariantCulture;
                 adapter.SelectCommand = cmdd;
                 adapter.Fill(table);
-                _application.dataGridView1.DataSource = table;
-                _application.dataGridView1.Columns["Streckenzeit"].DefaultCellStyle.Format = "HH:mm:ss";
-                platzierung(table);
+                var i = table.Rows.Count;
+                if (i != 0)
+                {
+                    _application.dataGridView1.DataSource = table;
+                    _application.dataGridView1.Columns["Streckenzeit"].DefaultCellStyle.Format = "HH:mm:ss";
+                    platzierung(table);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Es wurden keine Satensätze mit gefüllten Streckenzeiten gefunden.\nBitte pflegen Sie die Streckenzeiten ein.", "Error", MessageBoxButtons.OK);
+                    _application.Close();
+                }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
+                _application.Close();
             }
             finally
             {
