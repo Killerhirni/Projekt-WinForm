@@ -275,6 +275,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MinimizeBox = false;
             this.Name = "ManageStreckeWinForm";
             this.Text = "ManageStreckeWinForm";
             this.Load += new System.EventHandler(this.ManageStreckeWinForm_Load);

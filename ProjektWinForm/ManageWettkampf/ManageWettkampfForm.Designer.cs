@@ -427,6 +427,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "ManageWettkampfForm";
             this.Text = "ManageWettkampfForm";
             this.Load += new System.EventHandler(this.ManageWettkampfForm_Load);

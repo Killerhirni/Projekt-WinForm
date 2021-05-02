@@ -38,11 +38,11 @@
             this.pathTextSettings = new System.Windows.Forms.TextBox();
             this.SearchFile = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.saveStartMode_btn = new System.Windows.Forms.Button();
             this.advanced_rbn_settings = new System.Windows.Forms.RadioButton();
             this.regular_rbn_mode = new System.Windows.Forms.RadioButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -140,6 +140,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Mode";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(19, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Standart Mode = Regular";
+            // 
             // saveStartMode_btn
             // 
             this.saveStartMode_btn.Location = new System.Drawing.Point(108, 24);
@@ -176,15 +185,6 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 13);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Standart Mode = Regular";
-            // 
             // SettingsWinForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,6 +195,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "SettingsWinForm";
             this.Text = "SettingsWinForm";
             this.Load += new System.EventHandler(this.SettingsWinForm_Load);
