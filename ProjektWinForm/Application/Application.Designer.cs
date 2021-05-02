@@ -396,6 +396,7 @@
             this.Controls.Add(this.advancedManager_grpb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Application";
             this.Text = "App";

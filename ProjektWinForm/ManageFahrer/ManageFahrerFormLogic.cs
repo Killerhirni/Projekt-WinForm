@@ -132,7 +132,7 @@ namespace ProjektWinForm.ManageFahrer
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show($"There Was an Error:\n{e.Message}", "Error", MessageBoxButtons.OK);
             }
         }
 

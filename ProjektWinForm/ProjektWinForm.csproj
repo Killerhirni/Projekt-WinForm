@@ -67,6 +67,7 @@
     <Compile Include="Manage Strecke\ManageStreckeWinForm.Designer.cs">
       <DependentUpon>ManageStreckeWinForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manage Strecke\ManageStreckeWinFormLogic.cs" />
     <Compile Include="ManageFahrer\ManageFahrerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,12 +109,14 @@
     <Compile Include="ShowResults\AskForWettkampf.Designer.cs">
       <DependentUpon>AskForWettkampf.cs</DependentUpon>
     </Compile>
+    <Compile Include="ShowResults\AskForWettkampfLogik.cs" />
     <Compile Include="StreckenZeit\ManageStreckenZeitWinForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="StreckenZeit\ManageStreckenZeitWinForm.Designer.cs">
       <DependentUpon>ManageStreckenZeitWinForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StreckenZeit\ManageStreckenZeitWinFormLogic.cs" />
     <EmbeddedResource Include="Abfrage\AbfrageWinForm.resx">
       <DependentUpon>AbfrageWinForm.cs</DependentUpon>
     </EmbeddedResource>

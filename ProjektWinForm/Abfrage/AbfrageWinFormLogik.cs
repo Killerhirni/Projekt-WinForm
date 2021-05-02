@@ -18,12 +18,19 @@ namespace ProjektWinForm.Abfrage
 
         public void loadConn(string text)
         {
-            conn = new OleDbConnection(
-                $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
-            da = new OleDbDataAdapter($"select * from {text}", conn);
-            cmd = new OleDbCommandBuilder(da);
-            ds = new DataSet();
-            da.Fill(ds);
+            try
+            {
+                conn = new OleDbConnection(
+                    $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
+                da = new OleDbDataAdapter($"select * from {text}", conn);
+                cmd = new OleDbCommandBuilder(da);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"There Was an Error:\n{e.Message}", "Error", MessageBoxButtons.OK);
+            }
 
         }
 

@@ -76,12 +76,19 @@ namespace ProjektWinForm.Manageteam
 
         private void fillDataSet()
         {
-            conn = new OleDbConnection(
-                $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
-            da = new OleDbDataAdapter("select * from Team", conn);
-            cmd = new OleDbCommandBuilder(da);
-            ds = new DataSet();
-            da.Fill(ds);
+            try
+            {
+                conn = new OleDbConnection(
+                    $"provider=Microsoft.ACE.OLEDB.12.0;Data Source = {Properties.Settings.Default.StartFile}");
+                da = new OleDbDataAdapter("select * from Team", conn);
+                cmd = new OleDbCommandBuilder(da);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"There Was an Error:\n{e.Message}", "Error", MessageBoxButtons.OK);
+            }
         }
 
         public void SetProperties(object sender)
