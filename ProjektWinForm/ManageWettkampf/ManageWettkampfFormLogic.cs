@@ -157,7 +157,7 @@ namespace ProjektWinForm.ManageWettkampf
             string s3 = s2 + $" Bezeichnung = '{_application.textBox1.Text}'";
             DataRow[] dr = ds.Tables[0].Select($"{s3}");
             
-            if (dr.Length.Equals(0))
+            if (!dr.Any())
             {
                 DataRow dre = ds.Tables[0].NewRow();
                 dre["WettkampfDatum"] = _application.dateTimePicker1.Value.Date;

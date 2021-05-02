@@ -21,7 +21,7 @@ namespace ProjektWinForm.Manageteam
         {
             lk = lkk;
         }
-        
+
         public void addTeam()
         {
             if (_application.textBox2.Text != string.Empty && _application.textBox3.Text != string.Empty &&
@@ -29,9 +29,20 @@ namespace ProjektWinForm.Manageteam
                 _application.textBox6.Text != string.Empty && _application.textBox7.Text != string.Empty)
             {
                 fillDataSet();
-                addNewTeam();
-                messageBoxAdd();
-                runOut();
+                var test = $"{_application.textBox2.Text}";
+                DataRow[] drA = ds.Tables[0].Select($"Teamname = '{test}'");
+                if (!drA.Any())
+                {
+                    addNewTeam();
+                    messageBoxAdd();
+                    runOut();
+                }
+                else
+                {
+                    MessageBox.Show($"Das Team mit dem Teamnamen '{_application.textBox2.Text}' existiert bereits.",
+                        "Error", MessageBoxButtons.OK);
+                }
+
             }
             else
             {
