@@ -200,7 +200,7 @@ namespace ProjektWinForm.Manage_Strecke
         private void runOut()
         {
             da.Update(ds);
-            lk.UpdateAfterAdd("Strecke");
+            lk.UpdateAfterAdd("Strecke", 0);
             loadCombo("Strecke");
         }
 

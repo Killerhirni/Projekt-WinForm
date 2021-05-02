@@ -228,17 +228,17 @@ namespace ProjektWinForm.ManageFahrer
             da.Update(ds);
             if (_application.tabControl1.SelectedIndex.Equals(0))
             {
-                lk.UpdateAfterAdd($"Fahrer");
+                lk.UpdateAfterAdd($"Fahrer", 0);
             }
             else if (_application.tabControl1.SelectedIndex.Equals(1))
             {
-                lk.UpdateAfterAdd($"Fahrer");
+                lk.UpdateAfterAdd($"Fahrer", 0);
                 _application.comboBox2.Items.Clear();
                 loadCombo($"Fahrer");
             }
             else if (_application.tabControl1.SelectedIndex.Equals(2))
             {
-                lk.UpdateAfterAdd($"Fahrer");
+                lk.UpdateAfterAdd($"Fahrer", 0);
             }
         }
 

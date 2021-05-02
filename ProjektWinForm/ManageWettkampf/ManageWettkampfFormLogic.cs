@@ -141,7 +141,7 @@ namespace ProjektWinForm.ManageWettkampf
         private void runOut()
         {
             da.Update(ds);
-            lk.UpdateAfterAdd("Wettkampf");
+            lk.UpdateAfterAdd("Wettkampf", 0);
             loadCombo("Strecke");
         }
 

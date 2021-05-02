@@ -231,7 +231,7 @@ namespace ProjektWinForm.Logik
             }
         }
 
-        public void UpdateAfterAdd(string Table)
+        public void UpdateAfterAdd(string Table, int i)
         {
             da = new OleDbDataAdapter($"select * from {Table}", conn);
             cb = new OleDbCommandBuilder(da);
@@ -240,6 +240,10 @@ namespace ProjektWinForm.Logik
             da.Fill(ds);
             bs.DataSource = ds.Tables[0];
             _application.dataGridView1.DataSource = ds.Tables[0];
+            if (i != 0)
+            {
+                _application.dataGridView1.Columns["Streckenzeit"].DefaultCellStyle.Format = "HH:mm:ss";
+            }
             _application.bindingNavigator1.BindingSource = bs;
             Connect();
             OpenConn();

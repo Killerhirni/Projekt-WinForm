@@ -42,7 +42,7 @@ namespace ProjektWinForm.Manageteam
         private void runOut()
         {
             da.Update(ds);
-            lk.UpdateAfterAdd("Team");
+            lk.UpdateAfterAdd("Team", 0);
             loadCombo();
         }
 
