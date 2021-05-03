@@ -166,26 +166,33 @@ namespace ProjektWinForm.Manageteam
 
         public void loadCombo()
         {
-            fillDataSet();
-            if (_application.button3.Visible != true)
+            try
             {
-                _application.comboBox2.Items.Clear();
-            }
-            else
-            {
-                _application.comboBox1.Items.Clear();
-            }
-
-            foreach (DataRow dataRow in ds.Tables[0].Rows)
-            {
+                fillDataSet();
                 if (_application.button3.Visible != true)
                 {
-                    _application.comboBox2.Items.Add(dataRow.ItemArray[0]);
+                    _application.comboBox2.Items.Clear();
                 }
                 else
                 {
-                    _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                    _application.comboBox1.Items.Clear();
                 }
+
+                foreach (DataRow dataRow in ds.Tables[0].Rows)
+                {
+                    if (_application.button3.Visible != true)
+                    {
+                        _application.comboBox2.Items.Add(dataRow.ItemArray[0]);
+                    }
+                    else
+                    {
+                        _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _application.Close();
             }
         }
 
