@@ -42,6 +42,10 @@ namespace ProjektWinForm.Application
             {
                 lk.SetProperties(sender);
                 se.setForm1(sender);
+                if (Properties.Settings.Default.Mode != "Advanced")
+                {
+                    se.setSettingsToRegular();
+                }
             }
 
             if (!Properties.Settings.Default.StartFile.Equals("none"))
