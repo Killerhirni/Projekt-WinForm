@@ -64,11 +64,15 @@ namespace ProjektWinForm.StreckenZeit
         {
             if (tabControl1.SelectedIndex.Equals(0))
             {
+                comboBox3.Items.Clear();
+                button1.Visible = false;
+                button2.Text = "Add";
                 MSZWL.loadCombo("Teilnahme");
                 textBox2.Text = "Bezeichnung des Wettkampfes";
             }
             else if(tabControl1.SelectedIndex.Equals(1))
             {
+                comboBox2.Items.Clear();
                 button1.Visible = true;
                 button2.Text = "Save";
                 textBox3.Text = "Bezeichnung des Wettkampfes";

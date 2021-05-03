@@ -69,6 +69,7 @@ namespace ProjektWinForm.StreckenZeit
             catch (Exception e)
             {
                 MessageBox.Show($"There was an Error\nErrorMessage:\n{e.Message}", "Error", MessageBoxButtons.OK);
+                _application.Close();
             }
 
         }

@@ -133,6 +133,7 @@ namespace ProjektWinForm.ManageFahrer
             catch (Exception e)
             {
                 MessageBox.Show($"There Was an Error:\n{e.Message}", "Error", MessageBoxButtons.OK);
+                _application.Close();
             }
         }
 
