@@ -91,17 +91,20 @@ namespace ProjektWinForm.Manageteam
         {
             if (tabControl1.SelectedIndex == 0)
             {
+                textBox8.Text = "Teamname";
                 button1.Text = "Add";
                 button3.Visible = false;
             }
             else if(tabControl1.SelectedIndex == 1)
             {
+                textBox8.Text = "Teamname";
                 button3.Visible = false;
                 button1.Text = "Delete";
                 MTFL.loadCombo();
             }
             else
             {
+                textBox8.Text = "Teamname";
                 button1.Text = "Save";
                 button3.Visible = true;
                 MTFL.loadCombo();
@@ -124,6 +127,12 @@ namespace ProjektWinForm.Manageteam
                     textBox10.Clear();
                 }
             }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var a = MTFL.setBez();
+            textBox8.Text = a;
         }
     }
 }

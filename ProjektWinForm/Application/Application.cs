@@ -138,7 +138,7 @@ namespace ProjektWinForm.Application
 
         private void showResults_btn_Click(object sender, EventArgs e)
         {
-            AFW = new AskForWettkampf();
+            AFW = new AskForWettkampf(lk);
             AFW.setProperties(this);
             AFW.ShowDialog();
             if (WettkampfID != 0)

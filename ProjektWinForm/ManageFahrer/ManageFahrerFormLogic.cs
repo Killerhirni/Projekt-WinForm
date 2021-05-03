@@ -479,5 +479,24 @@ namespace ProjektWinForm.ManageFahrer
                 MessageBox.Show("Bitte wählen sie einen Wettkamf und/oder eine Startnummer aus.", "Fehler", MessageBoxButtons.OK);
             }
         }
+
+        public string setBezS()
+        {
+            string bez = string.Empty;
+            fillDataSet("Fahrer");
+            DataRow[] dr = new DataRow[] { };
+            if (_application.tabControl1.SelectedIndex.Equals(1))
+            {
+                dr = ds.Tables[0].Select($"Startnummer = {_application.comboBox2.Text}");
+            }
+
+            foreach (var dataRow in dr)
+            {
+                bez = dataRow.ItemArray[1].ToString() + " " + dataRow.ItemArray[2].ToString();
+            }
+
+            return bez;
+
+        }
     }
 }

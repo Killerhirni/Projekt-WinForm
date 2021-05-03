@@ -49,6 +49,7 @@ namespace ProjektWinForm.ManageFahrer
             {
                 textBox7.Text = "Bezeichnung des Wettkampfs";
                 button1.Text = "Add";
+                textBox19.Text = "Name des Fahrers";
                 button3.Visible = false;
                 comboBox1.Items.Clear();
                 MFFL.loadCombo("Team");
@@ -58,13 +59,14 @@ namespace ProjektWinForm.ManageFahrer
             {
                 textBox8.Text = "Bezeichnung des Wettkampfs";
                 button3.Visible = false;
-
+                textBox19.Text = "Name des Fahrers";
                 button1.Text = "Delete";
                 comboBox2.Items.Clear();
                 MFFL.loadCombo("Wettkampf");
             }
             else
             {
+                textBox19.Text = "Name des Fahrers";
                 textBox9.Text = "Bezeichnung des Wettkampfs";
                 button1.Text = "Save";
                 button3.Visible = true;
@@ -179,7 +181,8 @@ namespace ProjektWinForm.ManageFahrer
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            var a = MFFL.setBezS();
+            textBox19.Text = a;
         }
 
         private void textBox14_TextChanged(object sender, EventArgs e)

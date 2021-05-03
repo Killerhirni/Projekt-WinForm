@@ -250,5 +250,25 @@ namespace ProjektWinForm.Manageteam
             MessageBox.Show($"Das Team mit der TeamID:{_application.comboBox1.Text} wurde erfolgreich Bearbeitet.",
                 "Information", MessageBoxButtons.OK);
         }
+
+        public string setBez()
+        {
+            string bez = string.Empty;
+            fillDataSet();
+            DataRow[] dr = new DataRow[] { };
+            if (_application.tabControl1.SelectedIndex.Equals(1))
+            {
+                dr = ds.Tables[0].Select($"TeamID = {_application.comboBox2.Text}");
+            }
+
+            foreach (var dataRow in dr)
+            {
+                bez = dataRow.ItemArray[1].ToString();
+            }
+
+            return bez;
+
+
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace ProjektWinForm.ShowResults
+﻿using ProjektWinForm.Logik;
+using ProjektWinForm.ManageWettkampf;
+
+namespace ProjektWinForm.ShowResults
 {
     using System;
     using System.Windows.Forms;
@@ -7,11 +10,14 @@
     {
         private ProjektWinForm.Application.Application _form1Application;
         private AskForWettkampfLogik AFWL;
+        private ManageWettkampfForm MWWF;
+        private Logic lkk;
 
-        public AskForWettkampf()
+        public AskForWettkampf(Logic lk)
         {
             InitializeComponent();
             AFWL = new AskForWettkampfLogik();
+            lkk = lk;
         }
 
         public void setProperties(ProjektWinForm.Application.Application application)
@@ -45,6 +51,12 @@
         {
             AFWL.setWettkampfID();
             this.Close();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            MWWF = new ManageWettkampfForm(lkk);
+            MWWF.ShowDialog();
         }
     }
 }
