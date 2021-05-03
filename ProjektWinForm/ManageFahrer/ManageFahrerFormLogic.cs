@@ -22,100 +22,107 @@ namespace ProjektWinForm.ManageFahrer
         }
         public void loadCombo(string text)
         {
-            fillDataSet(text);
-            DataRow[] dr = new DataRow[] { };
-            if (text != "Wettkampf")
+            try
             {
-                if (text != "Team")
+                fillDataSet(text);
+                DataRow[] dr = new DataRow[] { };
+                if (text != "Wettkampf")
                 {
-                    if (_application.tabControl1.SelectedIndex.Equals(1))
+                    if (text != "Team")
                     {
-                        _application.comboBox2.Items.Clear();
+                        if (_application.tabControl1.SelectedIndex.Equals(1))
+                        {
+                            _application.comboBox2.Items.Clear();
+                        }
+                        else if (_application.tabControl1.SelectedIndex.Equals(0))
+                        {
+                            _application.comboBox1.Items.Clear();
+                        }
+                        else if (_application.tabControl1.SelectedIndex.Equals(2))
+                        {
+                            _application.comboBox3.Items.Clear();
+                        }
+                        if (_application.tabControl1.SelectedIndex.Equals(2))
+                        {
+                            dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox6.Text}");
+                        }
+                        else if (_application.tabControl1.SelectedIndex.Equals(1))
+                        {
+                            dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox5.Text}");
+                        }
+                        if (dr.Any())
+                        {
+                            foreach (DataRow dataRow in dr)
+                            {
+                                if (_application.tabControl1.SelectedIndex.Equals(1))
+                                {
+                                    _application.comboBox2.Items.Add(dataRow.ItemArray[1]);
+                                }
+                                else if (_application.tabControl1.SelectedIndex.Equals(0))
+                                {
+                                    _application.comboBox1.Items.Add(dataRow.ItemArray[1]);
+                                }
+                                else if (_application.tabControl1.SelectedIndex.Equals(2))
+                                {
+                                    _application.comboBox3.Items.Add(dataRow.ItemArray[1]);
+                                }
+                            }
+                        }
+                        else
+                        {
+
+                            MessageBox.Show(
+                                "Für diesen Wettkampf git es noch keine Fahrer.\nBite pflegen Sie zuerst einen ein.",
+                                "Error", MessageBoxButtons.OK);
+
+
+                        }
                     }
                     else if (_application.tabControl1.SelectedIndex.Equals(0))
                     {
                         _application.comboBox1.Items.Clear();
+                        foreach (DataRow dataRow in ds.Tables[0].Rows)
+                        {
+                            _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                        }
                     }
                     else if (_application.tabControl1.SelectedIndex.Equals(2))
                     {
-                        _application.comboBox3.Items.Clear();
-                    }
-                    if (_application.tabControl1.SelectedIndex.Equals(2))
-                    {
-                        dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox6.Text}");
-                    }
-                    else if (_application.tabControl1.SelectedIndex.Equals(1))
-                    {
-                        dr = ds.Tables[0].Select($"WettkampfID = {_application.comboBox5.Text}");
-                    }
-                    if (dr.Any())
-                    {
-                        foreach (DataRow dataRow in dr)
+                        _application.comboBox7.Items.Clear();
+                        foreach (DataRow dataRow in ds.Tables[0].Rows)
                         {
-                            if (_application.tabControl1.SelectedIndex.Equals(1))
-                            {
-                                _application.comboBox2.Items.Add(dataRow.ItemArray[1]);
-                            }
-                            else if (_application.tabControl1.SelectedIndex.Equals(0))
-                            {
-                                _application.comboBox1.Items.Add(dataRow.ItemArray[1]);
-                            }
-                            else if (_application.tabControl1.SelectedIndex.Equals(2))
-                            {
-                                _application.comboBox3.Items.Add(dataRow.ItemArray[1]);
-                            }
+                            _application.comboBox7.Items.Add(dataRow.ItemArray[0]);
                         }
-                    }
-                    else
-                    {
-
-                        MessageBox.Show(
-                            "Für diesen Wettkampf git es noch keine Fahrer.\nBite pflegen Sie zuerst einen ein.",
-                            "Error", MessageBoxButtons.OK);
-
-
                     }
                 }
                 else if (_application.tabControl1.SelectedIndex.Equals(0))
                 {
-                    _application.comboBox1.Items.Clear();
+                    _application.comboBox4.Items.Clear();
                     foreach (DataRow dataRow in ds.Tables[0].Rows)
                     {
-                        _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                        _application.comboBox4.Items.Add(dataRow.ItemArray[0]);
+                    }
+                }
+                else if (_application.tabControl1.SelectedIndex.Equals(1))
+                {
+                    _application.comboBox5.Items.Clear();
+                    foreach (DataRow dataRow in ds.Tables[0].Rows)
+                    {
+                        _application.comboBox5.Items.Add(dataRow.ItemArray[0]);
                     }
                 }
                 else if (_application.tabControl1.SelectedIndex.Equals(2))
                 {
-                    _application.comboBox7.Items.Clear();
+                    _application.comboBox6.Items.Clear();
                     foreach (DataRow dataRow in ds.Tables[0].Rows)
                     {
-                        _application.comboBox7.Items.Add(dataRow.ItemArray[0]);
+                        _application.comboBox6.Items.Add(dataRow.ItemArray[0]);
                     }
                 }
             }
-            else if (_application.tabControl1.SelectedIndex.Equals(0))
+            catch (Exception e)
             {
-                _application.comboBox4.Items.Clear();
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
-                {
-                    _application.comboBox4.Items.Add(dataRow.ItemArray[0]);
-                }
-            }
-            else if (_application.tabControl1.SelectedIndex.Equals(1))
-            {
-                _application.comboBox5.Items.Clear();
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
-                {
-                    _application.comboBox5.Items.Add(dataRow.ItemArray[0]);
-                }
-            }
-            else if (_application.tabControl1.SelectedIndex.Equals(2))
-            {
-                _application.comboBox6.Items.Clear();
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
-                {
-                    _application.comboBox6.Items.Add(dataRow.ItemArray[0]);
-                }
+                _application.Close();
             }
         }
 

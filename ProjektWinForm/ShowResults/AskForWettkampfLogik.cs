@@ -16,17 +16,24 @@ namespace ProjektWinForm.ShowResults
 
         public void loadCombo(string text)
         {
-            fillDataSet(text);
-            if (text != "Wettkampf")
+            try
             {
-            }
-            else
-            {
-                _application.comboBox1.Items.Clear();
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
+                fillDataSet(text);
+                if (text != "Wettkampf")
                 {
-                    _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
                 }
+                else
+                {
+                    _application.comboBox1.Items.Clear();
+                    foreach (DataRow dataRow in ds.Tables[0].Rows)
+                    {
+                        _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                _application.Close();
             }
         }
 

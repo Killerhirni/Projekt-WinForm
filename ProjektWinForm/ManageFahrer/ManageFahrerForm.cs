@@ -29,10 +29,17 @@ namespace ProjektWinForm.ManageFahrer
         {
             if (Properties.Settings.Default.StartFile != "none")
             {
-                MFFL.setProperties(this);
-                MFFL.loadCombo("Team");
-                MFFL.loadCombo("Wettkampf");
-                button3.Visible = false;
+                try
+                {
+                    MFFL.setProperties(this);
+                    MFFL.loadCombo("Team");
+                    MFFL.loadCombo("Wettkampf");
+                    button3.Visible = false;
+                }
+                catch (Exception exception)
+                {
+                    this.Close();
+                }
             }
             else
             {

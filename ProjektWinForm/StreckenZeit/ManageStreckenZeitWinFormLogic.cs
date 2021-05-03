@@ -30,28 +30,35 @@ namespace ProjektWinForm.StreckenZeit
 
         public void loadCombo(string text)
         {
-            fillDataSet(text);
-            if (_application.tabControl1.SelectedIndex.Equals(0))
+            try
             {
-                _application.comboBox1.Items.Clear();
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
+                fillDataSet(text);
+                if (_application.tabControl1.SelectedIndex.Equals(0))
                 {
-                    if (!_application.comboBox1.Items.Contains(dataRow.ItemArray[2]))
+                    _application.comboBox1.Items.Clear();
+                    foreach (DataRow dataRow in ds.Tables[0].Rows)
                     {
-                        _application.comboBox1.Items.Add(dataRow.ItemArray[2]);
+                        if (!_application.comboBox1.Items.Contains(dataRow.ItemArray[2]))
+                        {
+                            _application.comboBox1.Items.Add(dataRow.ItemArray[2]);
+                        }
+                    }
+                }
+                else if (_application.tabControl1.SelectedIndex.Equals(1))
+                {
+                    _application.comboBox4.Items.Clear();
+                    foreach (DataRow dataRow in ds.Tables[0].Rows)
+                    {
+                        if (!_application.comboBox4.Items.Contains(dataRow.ItemArray[2]))
+                        {
+                            _application.comboBox4.Items.Add(dataRow.ItemArray[2]);
+                        }
                     }
                 }
             }
-            else if (_application.tabControl1.SelectedIndex.Equals(1))
+            catch (Exception e)
             {
-                _application.comboBox4.Items.Clear();
-                foreach (DataRow dataRow in ds.Tables[0].Rows)
-                {
-                    if (!_application.comboBox4.Items.Contains(dataRow.ItemArray[2]))
-                    {
-                        _application.comboBox4.Items.Add(dataRow.ItemArray[2]);
-                    }
-                }
+                _application.Close();
             }
         }
 

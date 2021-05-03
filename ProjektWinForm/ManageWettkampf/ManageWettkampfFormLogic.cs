@@ -24,53 +24,60 @@ namespace ProjektWinForm.ManageWettkampf
 
         public void loadCombo(string text)
         {
-            fillDataSet(text);
-            if (text != "Strecke")
+            try
             {
-                if (text != "Wettkampf")
+                fillDataSet(text);
+                if (text != "Strecke")
                 {
-                    MessageBox.Show("PUFF!!", "PUFFFF", MessageBoxButtons.OK);
+                    if (text != "Wettkampf")
+                    {
+                        MessageBox.Show("PUFF!!", "PUFFFF", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        if (_application.tabControl1.SelectedIndex.Equals(1))
+                        {
+                            _application.comboBox1.Items.Clear();
+                            foreach (DataRow dataRow in ds.Tables[0].Rows)
+                            {
+                                _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                            }
+                        }
+                        else if (_application.tabControl1.SelectedIndex.Equals(2))
+                        {
+                            _application.comboBox4.Items.Clear();
+                            _application.textBox2.Clear();
+                            foreach (DataRow dataRow in ds.Tables[0].Rows)
+                            {
+                                _application.comboBox4.Items.Add(dataRow.ItemArray[0]);
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    if (_application.tabControl1.SelectedIndex.Equals(1))
+                    if (_application.tabControl1.SelectedIndex.Equals(0))
                     {
-                        _application.comboBox1.Items.Clear();
+                        _application.comboBox2.Items.Clear();
+                        _application.textBox1.Clear();
                         foreach (DataRow dataRow in ds.Tables[0].Rows)
                         {
-                            _application.comboBox1.Items.Add(dataRow.ItemArray[0]);
+                            _application.comboBox2.Items.Add(dataRow.ItemArray[0]);
                         }
                     }
                     else if (_application.tabControl1.SelectedIndex.Equals(2))
                     {
-                        _application.comboBox4.Items.Clear();
-                        _application.textBox2.Clear();
+                        _application.comboBox3.Items.Clear();
                         foreach (DataRow dataRow in ds.Tables[0].Rows)
                         {
-                            _application.comboBox4.Items.Add(dataRow.ItemArray[0]);
+                            _application.comboBox3.Items.Add(dataRow.ItemArray[0]);
                         }
                     }
                 }
             }
-            else
+            catch (Exception e)
             {
-                if (_application.tabControl1.SelectedIndex.Equals(0))
-                {
-                    _application.comboBox2.Items.Clear();
-                    _application.textBox1.Clear();
-                    foreach (DataRow dataRow in ds.Tables[0].Rows)
-                    {
-                        _application.comboBox2.Items.Add(dataRow.ItemArray[0]);
-                    }
-                }
-                else if (_application.tabControl1.SelectedIndex.Equals(2))
-                {
-                    _application.comboBox3.Items.Clear();
-                    foreach (DataRow dataRow in ds.Tables[0].Rows)
-                    {
-                        _application.comboBox3.Items.Add(dataRow.ItemArray[0]);
-                    }
-                }
+                _application.Close();
             }
         }
 
