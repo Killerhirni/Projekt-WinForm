@@ -497,6 +497,10 @@ namespace ProjektWinForm.ManageFahrer
             {
                 dr = ds.Tables[0].Select($"Startnummer = {_application.comboBox2.Text}");
             }
+            if (_application.tabControl1.SelectedIndex.Equals(2))
+            {
+                dr = ds.Tables[0].Select($"Startnummer = {_application.comboBox3.Text}");
+            }
 
             foreach (var dataRow in dr)
             {

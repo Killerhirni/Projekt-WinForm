@@ -56,6 +56,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox19 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -87,7 +88,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.textBox20 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -361,6 +362,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Delete Fahrer";
             // 
+            // textBox19
+            // 
+            this.textBox19.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox19.Location = new System.Drawing.Point(55, 80);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(178, 13);
+            this.textBox19.TabIndex = 19;
+            this.textBox19.Text = "Name des Fahrers";
+            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // textBox8
             // 
             this.textBox8.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -414,6 +426,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage3.Controls.Add(this.textBox20);
             this.tabPage3.Controls.Add(this.textBox15);
             this.tabPage3.Controls.Add(this.textBox16);
             this.tabPage3.Controls.Add(this.label19);
@@ -667,16 +680,16 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // textBox19
+            // textBox20
             // 
-            this.textBox19.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox19.Location = new System.Drawing.Point(55, 80);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(178, 13);
-            this.textBox19.TabIndex = 19;
-            this.textBox19.Text = "Name des Fahrers";
-            this.textBox19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox20.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBox20.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox20.Location = new System.Drawing.Point(212, 33);
+            this.textBox20.Multiline = true;
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(95, 25);
+            this.textBox20.TabIndex = 37;
+            this.textBox20.Text = "Name des Fahrers";
             // 
             // ManageFahrerForm
             // 
@@ -763,5 +776,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox textBox20;
     }
 }

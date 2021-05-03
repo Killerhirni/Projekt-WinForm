@@ -54,6 +54,7 @@ namespace ProjektWinForm.ManageFahrer
         {
             if (tabControl1.SelectedIndex == 0)
             {
+                textBox20.Text = "Name des Fahrers";
                 textBox7.Text = "Bezeichnung des Wettkampfs";
                 button1.Text = "Add";
                 textBox19.Text = "Name des Fahrers";
@@ -64,6 +65,7 @@ namespace ProjektWinForm.ManageFahrer
             }
             else if (tabControl1.SelectedIndex == 1)
             {
+                textBox20.Text = "Name des Fahrers";
                 textBox8.Text = "Bezeichnung des Wettkampfs";
                 button3.Visible = false;
                 textBox19.Text = "Name des Fahrers";
@@ -73,6 +75,7 @@ namespace ProjektWinForm.ManageFahrer
             }
             else
             {
+                textBox20.Text = "Name des Fahrers";
                 textBox19.Text = "Name des Fahrers";
                 textBox9.Text = "Bezeichnung des Wettkampfs";
                 button1.Text = "Save";
@@ -171,6 +174,8 @@ namespace ProjektWinForm.ManageFahrer
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var a = MFFL.setBezS();
+            textBox20.Text = a;
             MFFL.autoSelectTeamID();
         }
 
